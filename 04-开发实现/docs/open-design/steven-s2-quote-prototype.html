@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Steven 行政助手｜採購比價</title>
+  <style>
+    :root {
+      --bg: #F6F7F9;
+      --surface: #FFFFFF;
+      --surface-warm: #F6F7F9;
+      --fg: #1D2939;
+      --fg-2: #344054;
+      --muted: #667085;
+      --meta: #2563eb;
+      --border: #D8DEE6;
+      --border-soft: #EAECF0;
+      --accent: #2563eb;
+      --accent-on: #ffffff;
+      --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+      --accent-active: color-mix(in oklab, var(--accent), black 14%);
+      --success: #027A48;
+      --warn: #936A00;
+      --danger: #B42318;
+      --font-display: Inter, "PingFang HK", "Microsoft JhengHei", system-ui, sans-serif;
+      --font-body: Inter, "PingFang HK", "Microsoft JhengHei", system-ui, sans-serif;
+      --font-mono: "SF Mono", ui-monospace, Menlo, monospace;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-base: 16px;
+      --text-lg: 18px;
+      --text-xl: 22px;
+      --text-2xl: 30px;
+      --text-3xl: 42px;
+      --text-4xl: 58px;
+      --leading-body: 1.5;
+      --leading-tight: 1.12;
+      --tracking-display: -0.015em;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --section-y-desktop: 88px;
+      --section-y-tablet: 64px;
+      --section-y-phone: 44px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-pill: 9999px;
+      --elev-flat: none;
+      --elev-ring: 0 0 0 1px var(--border);
+      --elev-raised: 0 16px 40px rgba(23, 32, 51, 0.10);
+      --focus-ring: 0 0 0 4px rgba(37, 99, 235, 0.22);
+      --motion-fast: 140ms;
+      --motion-base: 220ms;
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+      --container-max: 1200px;
+      --container-gutter-desktop: 36px;
+      --container-gutter-tablet: 24px;
+      --container-gutter-phone: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--fg); background: var(--bg); font-family: var(--font-body); font-size: var(--text-sm); line-height: var(--leading-body); }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+    .shell { min-height: 100vh; }
+    .topbar { height: 64px; display: flex; align-items: center; gap: var(--space-4); padding: 0 var(--container-gutter-desktop); border-bottom: 1px solid var(--border); background: var(--surface); }
+    .brand { display: flex; align-items: center; gap: 10px; min-width: 232px; font-weight: 600; }
+    .brand-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--fg); color: var(--accent-on); font-size: 13px; }
+    .crumb { color: var(--muted); }
+    .user { margin-left: auto; display: flex; align-items: center; gap: 10px; color: var(--fg-2); }
+    .avatar { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #E8EEF9; color: #1D4ED8; font-weight: 600; }
+    .main { width: min(100%, var(--container-max)); margin: 0 auto; padding: var(--space-8) var(--container-gutter-desktop) var(--space-12); }
+    .page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-5); margin-bottom: var(--space-8); }
+    .eyebrow { margin: 0 0 var(--space-1); color: var(--muted); font-size: var(--text-xs); font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: var(--space-2); font-size: var(--text-2xl); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+    h2 { margin-bottom: 0; font-size: var(--text-xl); line-height: 1.2; letter-spacing: -.01em; }
+    h3 { margin-bottom: var(--space-1); font-size: var(--text-base); }
+    .support { max-width: 65ch; margin: 0; color: var(--muted); }
+    .btn { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: 0 14px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); color: var(--fg); font-weight: 600; letter-spacing: .02em; transition: transform var(--motion-fast) var(--ease-standard), background var(--motion-fast); }
+    .btn:hover { background: var(--bg); }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { border-color: var(--accent); background: var(--accent); color: var(--accent-on); }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-danger { border-color: var(--danger); color: var(--danger); }
+    .btn-quiet { border-color: transparent; background: transparent; color: var(--fg-2); }
+    .btn-quiet:hover { background: var(--border-soft); }
+    .icon { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
+    .filters { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+    .field { min-height: 38px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--fg); padding: 0 10px; }
+    .search { width: 252px; }
+    .panel { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); box-shadow: 0 1px 2px rgba(16, 24, 40, .03); }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5); border-bottom: 1px solid var(--border-soft); }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; min-width: 900px; border-collapse: collapse; text-align: left; }
+    th { padding: 10px var(--space-5); color: var(--muted); background: #FCFCFD; font-size: var(--text-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+    td { padding: 14px var(--space-5); border-top: 1px solid var(--border-soft); vertical-align: middle; }
+    tbody tr { transition: background var(--motion-fast); }
+    tbody tr:hover { background: #F9FAFB; }
+    .row-button { width: 100%; border: 0; background: transparent; padding: 0; text-align: left; color: inherit; font-weight: 600; }
+    .subline { display: block; margin-top: 2px; color: var(--muted); font-size: var(--text-xs); font-weight: 400; }
+    .status { display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-pill); padding: 3px 8px; font-size: var(--text-xs); font-weight: 600; white-space: nowrap; }
+    .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .status-ok { color: var(--success); background: #ECFDF3; }
+    .status-warn { color: var(--warn); background: #FFFAEB; }
+    .status-danger { color: var(--danger); background: #FEF3F2; }
+    .status-neutral { color: var(--muted); background: #F2F4F7; }
+    .notice { display: flex; gap: 12px; margin-bottom: var(--space-5); padding: 12px 14px; border: 1px solid #FECDCA; border-radius: var(--radius-sm); background: #FFFBFA; color: #7A271A; }
+    .notice strong { display: block; }
+    .view { display: none; }
+    .view.active { display: block; }
+    .detail-header { display: flex; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-5); }
+    .back { width: 40px; min-width: 40px; padding: 0; }
+    .detail-actions { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-bottom: var(--space-5); }
+    .stat { padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
+    .stat-label { display: block; color: var(--muted); font-size: var(--text-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+    .stat-value { display: block; margin-top: var(--space-2); font-size: var(--text-lg); font-weight: 600; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: var(--space-5); align-items: start; }
+    .stack { display: grid; gap: var(--space-5); }
+    .vendor-card { padding: var(--space-4); border-bottom: 1px solid var(--border-soft); }
+    .vendor-card:last-child { border-bottom: 0; }
+    .vendor-top { display: flex; align-items: center; gap: 8px; }
+    .vendor-total { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); }
+    .vendor-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: var(--space-3); color: var(--muted); font-size: var(--text-xs); }
+    .matrix { font-size: var(--text-xs); }
+    .matrix th, .matrix td { padding: 10px 12px; }
+    .matrix td:not(:first-child) { font-family: var(--font-mono); color: var(--fg-2); }
+    .lowest { color: var(--success) !important; font-weight: 600; }
+    .expired { color: var(--danger) !important; font-weight: 600; }
+    .empty { color: var(--muted) !important; font-family: var(--font-body) !important; }
+    .calc-note { padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border-soft); color: var(--muted); font-size: var(--text-xs); }
+    .calc-note strong { color: var(--fg-2); }
+    .overlay { position: fixed; inset: 0; z-index: 10; display: none; background: rgba(16, 24, 40, .34); }
+    .overlay.open { display: block; }
+    .drawer { position: fixed; z-index: 11; top: 0; right: 0; display: flex; flex-direction: column; width: min(100%, 580px); height: 100vh; transform: translateX(100%); background: var(--surface); box-shadow: -16px 0 40px rgba(16, 24, 40, .13); transition: transform var(--motion-base) var(--ease-standard); }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); padding: var(--space-6); border-bottom: 1px solid var(--border); }
+    .drawer-body { overflow-y: auto; padding: var(--space-6); }
+    .drawer-foot { display: flex; justify-content: flex-end; gap: var(--space-3); padding: var(--space-4) var(--space-6); border-top: 1px solid var(--border); }
+    .icon-btn { display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); }
+    .icon-btn:hover { background: var(--border-soft); color: var(--fg); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+    .form-group { margin-bottom: var(--space-4); }
+    label { display: block; margin-bottom: 6px; color: var(--fg-2); font-size: var(--text-sm); font-weight: 600; }
+    textarea.field, select.field { width: 100%; min-height: 40px; padding: 9px 10px; }
+    textarea.field { min-height: 92px; resize: vertical; }
+    .import-file { display: grid; place-items: center; min-height: 106px; border: 1px dashed var(--border); border-radius: var(--radius-sm); background: #FCFCFD; text-align: center; color: var(--muted); }
+    .import-file strong { color: var(--fg-2); }
+    .issue-list { margin: var(--space-5) 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .issue { display: grid; grid-template-columns: 54px 1fr auto; gap: var(--space-3); align-items: start; padding: 12px; border-top: 1px solid var(--border-soft); }
+    .issue:first-child { border-top: 0; }
+    .issue-line { color: var(--muted); font-family: var(--font-mono); font-size: var(--text-xs); }
+    .issue-copy { color: var(--fg-2); font-size: var(--text-xs); }
+    .issue-copy strong { display: block; color: var(--fg); font-size: var(--text-sm); }
+    .checkbox { display: flex; align-items: flex-start; gap: 9px; color: var(--fg-2); font-size: var(--text-sm); }
+    .checkbox input { width: 16px; height: 16px; margin: 2px 0 0; accent-color: var(--accent); }
+    .modal-wrap { position: fixed; z-index: 12; inset: 0; display: none; place-items: center; padding: var(--space-4); }
+    .modal-wrap.open { display: grid; }
+    .modal { width: min(100%, 520px); max-height: calc(100vh - 32px); overflow-y: auto; border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--elev-raised); }
+    .modal-head, .modal-body, .modal-foot { padding: var(--space-5); }
+    .modal-head { border-bottom: 1px solid var(--border-soft); }
+    .modal-foot { display: flex; justify-content: flex-end; gap: var(--space-3); border-top: 1px solid var(--border-soft); }
+    .help { margin: 6px 0 0; color: var(--muted); font-size: var(--text-xs); }
+    .validation { display: none; margin-top: 8px; color: var(--danger); font-size: var(--text-xs); }
+    .validation.show { display: block; }
+    .version-row, .audit-row { display: grid; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--border-soft); }
+    .version-row:last-child, .audit-row:last-child { border-bottom: 0; }
+    .version-top { display: flex; justify-content: space-between; gap: var(--space-3); font-weight: 600; }
+    .version-meta, .audit-meta { color: var(--muted); font-size: var(--text-xs); }
+    .toast { position: fixed; z-index: 20; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 10px; width: min(360px, calc(100vw - 32px)); padding: 13px 14px; border: 1px solid #ABEFC6; border-radius: var(--radius-sm); background: var(--surface); box-shadow: var(--elev-raised); color: var(--fg-2); opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity var(--motion-base), transform var(--motion-base); }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--success); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    @media (max-width: 850px) { .topbar { padding: 0 var(--container-gutter-tablet); } .main { padding: var(--space-6) var(--container-gutter-tablet); } .detail-grid { grid-template-columns: 1fr; } .stat-grid { grid-template-columns: repeat(2, 1fr); } .brand { min-width: auto; } .crumb { display: none; } }
+    @media (max-width: 600px) { .topbar { height: 56px; padding: 0 var(--container-gutter-phone); } .main { padding: var(--space-5) var(--container-gutter-phone); } .page-header, .detail-header { display: block; } .page-header .btn { width: 100%; margin-top: var(--space-4); } .detail-header .back { margin-bottom: var(--space-3); } .detail-actions { margin: var(--space-4) 0 0; justify-content: flex-start; } .detail-actions .btn { flex: 1; } .toolbar { align-items: stretch; flex-direction: column; } .search { width: 100%; } .filters .field { flex: 1; } .stat-grid { grid-template-columns: 1fr 1fr; } .drawer { width: 100%; } .form-row { grid-template-columns: 1fr; } .user span { display: none; } h1 { font-size: 26px; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar" data-od-id="steven-topbar">
+      <div class="brand"><span class="brand-mark">P</span><span>培英中學 · Steven</span></div>
+      <span class="crumb">校務處行政助手 / 採購比價</span>
+      <div class="user"><span>Steven</span><span class="avatar" aria-hidden="true">S</span></div>
+    </header>
+
+    <main class="main" data-od-id="quotes-main">
+      <section id="listView" class="view active" aria-label="採購事項列表" data-od-id="quote-list-view">
+        <div class="page-header">
+          <div>
+            <p class="eyebrow">採購行政</p>
+            <h1 data-od-id="quote-list-title">採購比價</h1>
+            <p class="support">統一管理供應商報價、完整性與人工推薦。系統僅提供價格排序，不作供應商選擇或審批。</p>
+          </div>
+          <button class="btn btn-primary" type="button" id="newQuoteBtn" data-od-id="new-quote-button"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>新建採購事項</button>
+        </div>
+        <div class="toolbar" data-od-id="quote-list-toolbar">
+          <div class="filters">
+            <input id="searchInput" class="field search" type="search" placeholder="搜尋事項編號或名稱" aria-label="搜尋採購事項">
+            <select id="statusFilter" class="field" aria-label="按狀態篩選"><option value="all">全部狀態</option><option value="blocked">比較受阻</option><option value="ready">可人工推薦</option><option value="review">待人工覆核</option></select>
+          </div>
+          <span id="listCount" class="support">3 個事項</span>
+        </div>
+        <section class="panel" aria-labelledby="listPanelTitle" data-od-id="quote-list-panel">
+          <div class="panel-head"><h2 id="listPanelTitle">採購事項</h2><span class="support">最近更新：2026-07-16</span></div>
+          <div class="table-wrap"><table aria-label="採購事項列表"><thead><tr><th>事項</th><th>幣種</th><th>供應商</th><th>品項</th><th>完整性</th><th>有效期</th><th>推薦狀態</th><th></th></tr></thead><tbody id="quoteRows"></tbody></table></div>
+        </section>
+      </section>
+
+      <section id="detailView" class="view" aria-label="採購事項詳情" data-od-id="quote-detail-view">
+        <div class="detail-header">
+          <button class="btn back" type="button" id="backToList" aria-label="返回採購事項列表" data-od-id="back-to-list-button"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></button>
+          <div><p class="eyebrow">RQ-2026-0716-04 · 港幣 HKD</p><h1 data-od-id="quote-detail-title">2026-27 學年文具及印刷耗材</h1><p class="support">5 個標準品項 · 3 家供應商 · 報價截止 2026-07-21</p></div>
+          <div class="detail-actions">
+            <button class="btn" type="button" data-drawer="importDrawer" data-od-id="import-quote-button">導入報價</button>
+            <button class="btn" type="button" data-drawer="exceptionDrawer" data-od-id="exception-button">異常 2</button>
+            <button class="btn" type="button" data-drawer="versionDrawer" data-od-id="version-button">版本</button>
+            <button class="btn btn-primary" type="button" id="recommendBtn" data-od-id="recommend-button">人工推薦</button>
+          </div>
+        </div>
+        <div class="notice" data-od-id="comparison-warning"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg><div><strong>完整比較已阻斷</strong>供應商「華文供應」的 2 項報價已過期。系統價格排序保留作參考，完成有效報價覆核前不可視為完整比較。</div></div>
+        <div class="stat-grid" data-od-id="quote-detail-summary">
+          <div class="stat"><span class="stat-label">報價明細</span><span class="stat-value">15 / 15</span></div>
+          <div class="stat"><span class="stat-label">最低價排序</span><span class="stat-value">雅文書局</span></div>
+          <div class="stat"><span class="stat-label">人工推薦</span><span id="recommendationStatus" class="stat-value">未填寫</span></div>
+          <div class="stat"><span class="stat-label">Excel 版本</span><span class="stat-value">v3</span></div>
+        </div>
+        <div class="detail-grid">
+          <div class="stack">
+            <section class="panel" data-od-id="quote-matrix-panel">
+              <div class="panel-head"><div><h2>3 × 5 報價矩陣</h2><p class="help">綠色為每項最低單價；紅色為過期報價。運費與稅費僅在供應商合計時各計一次。</p></div><span class="status status-neutral">系統計算</span></div>
+              <div class="table-wrap"><table class="matrix" aria-label="供應商報價矩陣"><thead><tr><th>標準品項</th><th>雅文書局</th><th>華文供應</th><th>文博貿易</th></tr></thead><tbody>
+                <tr><td>影印紙 A4 80gsm<br><span class="subline">500 張 / 包 · 40 包</span></td><td class="lowest">HK$ 34.50</td><td>HK$ 35.20</td><td>HK$ 36.00</td></tr>
+                <tr><td>藍黑原子筆 0.5mm<br><span class="subline">盒裝 · 20 盒</span></td><td>HK$ 76.00</td><td class="lowest">HK$ 74.50</td><td>HK$ 77.80</td></tr>
+                <tr><td>透明文件夾 A4<br><span class="subline">100 個 / 箱 · 5 箱</span></td><td class="lowest">HK$ 128.00</td><td class="expired">HK$ 130.00 · 過期</td><td>HK$ 132.00</td></tr>
+                <tr><td>墨盒 HP 962XL 黑色<br><span class="subline">支裝 · 12 支</span></td><td>HK$ 218.00</td><td class="expired">HK$ 216.00 · 過期</td><td class="lowest">HK$ 215.50</td></tr>
+                <tr><td>雷射打印紙標籤 24 格<br><span class="subline">100 張 / 包 · 10 包</span></td><td>HK$ 68.00</td><td>HK$ 70.00</td><td class="lowest">HK$ 67.50</td></tr>
+              </tbody></table></div>
+              <div class="calc-note"><strong>供應商總價：</strong>雅文書局 HK$ 2,812.00（含運費 HK$ 120、稅費 HK$ 0） · 華文供應 HK$ 2,795.50（含運費 HK$ 90、稅費 HK$ 0） · 文博貿易 HK$ 2,809.80（含運費 HK$ 130、稅費 HK$ 0）。此為系統計算，不構成推薦。</div>
+            </section>
+            <section class="panel" data-od-id="item-table-panel">
+              <div class="panel-head"><div><h2>標準品項</h2><p class="help">規格由採購事項固定，導入時不接受供應商自行改寫。</p></div><button class="btn btn-quiet" type="button" data-drawer="auditDrawer">查看審計</button></div>
+              <div class="table-wrap"><table aria-label="標準品項表"><thead><tr><th>品項編號</th><th>品項及規格</th><th>數量</th><th>已收報價</th><th>最低單價</th></tr></thead><tbody>
+                <tr><td><code>ITM-01</code></td><td>影印紙 A4 80gsm</td><td>40 包</td><td>3 / 3</td><td>HK$ 34.50</td></tr><tr><td><code>ITM-02</code></td><td>藍黑原子筆 0.5mm</td><td>20 盒</td><td>3 / 3</td><td>HK$ 74.50</td></tr><tr><td><code>ITM-03</code></td><td>透明文件夾 A4</td><td>5 箱</td><td>3 / 3</td><td>HK$ 128.00</td></tr><tr><td><code>ITM-04</code></td><td>墨盒 HP 962XL 黑色</td><td>12 支</td><td>3 / 3</td><td>HK$ 215.50</td></tr><tr><td><code>ITM-05</code></td><td>雷射打印紙標籤 24 格</td><td>10 包</td><td>3 / 3</td><td>HK$ 67.50</td></tr>
+              </tbody></table></div>
+            </section>
+          </div>
+          <aside class="panel" aria-label="供應商報價摘要" data-od-id="supplier-cards-panel">
+            <div class="panel-head"><h2>供應商報價</h2><button class="btn btn-quiet" type="button" data-drawer="attachmentDrawer">附件</button></div>
+            <article class="vendor-card" data-od-id="supplier-yawen"><div class="vendor-top"><strong>雅文書局</strong><span class="status status-ok">有效</span><span class="vendor-total">HK$ 2,812.00</span></div><div class="vendor-meta"><span>運費 HK$ 120</span><span>稅費 HK$ 0</span><span>有效至 07-22</span><span>5 / 5 品項</span></div></article>
+            <article class="vendor-card" data-od-id="supplier-wahman"><div class="vendor-top"><strong>華文供應</strong><span class="status status-danger">2 項過期</span><span class="vendor-total">HK$ 2,795.50</span></div><div class="vendor-meta"><span>運費 HK$ 90</span><span>稅費 HK$ 0</span><span>有效至 07-14</span><span>5 / 5 品項</span></div></article>
+            <article class="vendor-card" data-od-id="supplier-manbo"><div class="vendor-top"><strong>文博貿易</strong><span class="status status-ok">有效</span><span class="vendor-total">HK$ 2,809.80</span></div><div class="vendor-meta"><span>運費 HK$ 130</span><span>稅費 HK$ 0</span><span>有效至 07-23</span><span>5 / 5 品項</span></div></article>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+  <aside id="importDrawer" class="drawer" aria-hidden="true" aria-labelledby="importTitle" role="dialog" data-od-id="import-drawer"><div class="drawer-head"><div><p class="eyebrow">人工導入</p><h2 id="importTitle">報價導入預檢</h2><p class="help">只檢查欄位、幣種與完整性；不使用 AI 或 OCR。</p></div><button class="icon-btn close-layer" type="button" aria-label="關閉導入抽屜"><svg class="icon"><use href="#i-close"></use></svg></button></div><div class="drawer-body"><div class="import-file"><div><svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg><br><strong>供應商報價 CSV / XLSX</strong><br><span>已選取：華文供應_0716.xlsx</span></div></div><div class="issue-list" aria-label="導入預檢結果"><div class="issue"><span class="issue-line">第 08 行</span><span class="issue-copy"><strong>幣種</strong>偵測為 USD，與採購事項 HKD 不一致。</span><span class="status status-danger">阻斷</span></div><div class="issue"><span class="issue-line">第 13 行</span><span class="issue-copy"><strong>報價有效至</strong>日期 2026-07-14 已過期。</span><span class="status status-danger">阻斷</span></div><div class="issue"><span class="issue-line">第 18 行</span><span class="issue-copy"><strong>運費</strong>已辨識為供應商固定金額，將只計入一次。</span><span class="status status-warn">覆核</span></div></div><label class="checkbox"><input id="importAcknowledge" type="checkbox"><span>我已逐項覆核預檢結果，並明白阻斷項目未修正前不可寫入報價。</span></label><p id="importBlockMessage" class="validation">阻斷項目存在：請修正來源檔案後重新導入，系統不會寫入部分資料。</p></div><div class="drawer-foot"><button class="btn close-layer" type="button">取消</button><button id="writeImportBtn" class="btn btn-primary" type="button" disabled>修正後重新預檢</button></div></aside>
+  <aside id="exceptionDrawer" class="drawer" aria-hidden="true" aria-labelledby="exceptionTitle" role="dialog" data-od-id="exception-drawer"><div class="drawer-head"><div><p class="eyebrow">需人工處理</p><h2 id="exceptionTitle">異常與阻斷</h2></div><button class="icon-btn close-layer" type="button" aria-label="關閉異常抽屜"><svg class="icon"><use href="#i-close"></use></svg></button></div><div class="drawer-body"><div class="issue-list"><div class="issue"><span class="issue-line">14 條</span><span class="issue-copy"><strong>缺報價</strong>RQ-2026-0716-05 尚有 14 個報價格未填，完整比較已阻斷。</span><span class="status status-danger">阻斷</span></div><div class="issue"><span class="issue-line">2 條</span><span class="issue-copy"><strong>幣種不一致</strong>RQ-2026-0716-05 的報價列同時出現 HKD 與 USD。</span><span class="status status-danger">阻斷</span></div><div class="issue"><span class="issue-line">2 項</span><span class="issue-copy"><strong>過期報價</strong>本事項的華文供應報價需更新後才可完成比較。</span><span class="status status-warn">覆核</span></div></div><p class="help">阻斷是資料完整性提示，不會代替任何人作供應商決定。</p></div><div class="drawer-foot"><button class="btn close-layer" type="button">完成覆核</button></div></aside>
+  <aside id="versionDrawer" class="drawer" aria-hidden="true" aria-labelledby="versionTitle" role="dialog" data-od-id="version-drawer"><div class="drawer-head"><div><p class="eyebrow">導出記錄</p><h2 id="versionTitle">Excel 版本</h2><p class="help">每次導出均建立新版本，既有檔案不會被覆蓋。</p></div><button class="icon-btn close-layer" type="button" aria-label="關閉版本抽屜"><svg class="icon"><use href="#i-close"></use></svg></button></div><div class="drawer-body" id="versionList"><div class="version-row"><div class="version-top"><span>v3 · 比價明細.xlsx</span><span>2026-07-16 14:20</span></div><span class="version-meta">由 Steven 導出 · 包含 15 條報價明細</span></div><div class="version-row"><div class="version-top"><span>v2 · 比價明細.xlsx</span><span>2026-07-16 10:08</span></div><span class="version-meta">由 Steven 導出 · 導入預檢後版本</span></div><div class="version-row"><div class="version-top"><span>v1 · 比價明細.xlsx</span><span>2026-07-15 16:42</span></div><span class="version-meta">由 Steven 導出 · 初始模板</span></div></div><div class="drawer-foot"><button id="exportBtn" class="btn btn-primary" type="button">導出新 Excel 版本</button></div></aside>
+  <aside id="attachmentDrawer" class="drawer" aria-hidden="true" aria-labelledby="attachmentTitle" role="dialog" data-od-id="attachment-drawer"><div class="drawer-head"><div><p class="eyebrow">人工留存</p><h2 id="attachmentTitle">報價附件</h2></div><button class="icon-btn close-layer" type="button" aria-label="關閉附件抽屜"><svg class="icon"><use href="#i-close"></use></svg></button></div><div class="drawer-body"><div class="version-row"><div class="version-top"><span>雅文書局_報價單.pdf</span><span>已核對</span></div><span class="version-meta">上載：2026-07-16 09:18 · 2.1 MB</span></div><div class="version-row"><div class="version-top"><span>華文供應_0716.xlsx</span><span>待更新</span></div><span class="version-meta">上載：2026-07-16 09:31 · 有效期異常</span></div><div class="version-row"><div class="version-top"><span>文博貿易_報價單.pdf</span><span>已核對</span></div><span class="version-meta">上載：2026-07-16 09:45 · 1.8 MB</span></div></div><div class="drawer-foot"><button class="btn close-layer" type="button">關閉</button></div></aside>
+  <aside id="auditDrawer" class="drawer" aria-hidden="true" aria-labelledby="auditTitle" role="dialog" data-od-id="audit-drawer"><div class="drawer-head"><div><p class="eyebrow">可追溯記錄</p><h2 id="auditTitle">審計紀錄</h2></div><button class="icon-btn close-layer" type="button" aria-label="關閉審計抽屜"><svg class="icon"><use href="#i-close"></use></svg></button></div><div class="drawer-body"><div class="audit-row"><strong>Steven 開啟比價詳情</strong><span class="audit-meta">2026-07-16 14:35 · RQ-2026-0716-04</span></div><div class="audit-row"><strong>系統重新計算最低價排序</strong><span class="audit-meta">2026-07-16 14:22 · 僅供排序參考</span></div><div class="audit-row"><strong>Steven 確認雅文書局附件</strong><span class="audit-meta">2026-07-16 10:14 · 人工核對</span></div><div class="audit-row"><strong>華文供應報價標記為過期</strong><span class="audit-meta">2026-07-16 09:36 · 有效期規則</span></div></div><div class="drawer-foot"><button class="btn close-layer" type="button">關閉</button></div></aside>
+
+  <div id="recommendModal" class="modal-wrap" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="recommendTitle" data-od-id="recommend-modal"><div class="modal"><div class="modal-head"><p class="eyebrow">人工決策</p><h2 id="recommendTitle">填寫人工推薦</h2><p class="help">系統最低價排序為雅文書局。此表單預設不選擇供應商，且不會自動送審。</p></div><div class="modal-body"><div class="form-group"><label for="recommendVendor">推薦供應商</label><select id="recommendVendor" class="field"><option value="">請由人工選擇</option><option value="雅文書局">雅文書局（系統排序第 2）</option><option value="華文供應">華文供應（系統排序第 1，含過期項）</option><option value="文博貿易">文博貿易（系統排序第 3）</option></select><p class="help">選擇不會產生訂單或通知供應商。</p></div><div id="nonLowestFields" hidden><div class="form-group"><label for="nonLowestReason">非最低價理由</label><textarea id="nonLowestReason" class="field" placeholder="例如：交貨期、規格一致性或有效報價狀態"></textarea><p class="validation" id="reasonError">請填寫非最低價理由。</p></div><div class="form-group"><label for="approvalOpinion">審批意見</label><textarea id="approvalOpinion" class="field" placeholder="填寫供後續人工審批參考"></textarea><p class="validation" id="opinionError">請填寫審批意見。</p></div></div><div class="form-group"><label for="recommendNote">推薦備註</label><textarea id="recommendNote" class="field" placeholder="可選，僅作行政紀錄"></textarea></div></div><div class="modal-foot"><button class="btn close-modal" type="button">取消</button><button id="saveRecommendation" class="btn btn-primary" type="button">儲存人工推薦</button></div></div></div>
+  <div id="exportModal" class="modal-wrap" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="exportTitle" data-od-id="export-confirm-modal"><div class="modal"><div class="modal-head"><p class="eyebrow">確認導出</p><h2 id="exportTitle">建立 Excel 新版本？</h2></div><div class="modal-body"><p>將建立 <strong id="nextVersion">v4</strong>，保留既有版本及審計紀錄。導出內容只反映目前人工確認的資料，並不代表已審批或已下單。</p></div><div class="modal-foot"><button class="btn close-modal" type="button">取消</button><button id="confirmExport" class="btn btn-primary" type="button">確認建立新版本</button></div></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"><span class="dot"></span><span id="toastText">操作已完成</span></div>
+  <svg class="sr-only" xmlns="http://www.w3.org/2000/svg"><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.3 3.4 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.4a2 2 0 0 0-3.4 0Z"/></symbol><symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m0 0L7 8m5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></symbol></svg>
+  <script>
+    const quotes = [
+      { id: 'RQ-2026-0716-04', title: '2026-27 學年文具及印刷耗材', currency: 'HKD', suppliers: '3', items: '5', complete: '15 / 15', expiry: '2 項已過期', rec: '未填寫', state: 'review', tone: 'danger' },
+      { id: 'RQ-2026-0716-05', title: '禮堂影音設備維護服務', currency: 'HKD / USD', suppliers: '3', items: '5', complete: '1 / 15', expiry: '待補資料', rec: '不可比較', state: 'blocked', tone: 'danger' },
+      { id: 'RQ-2026-0712-02', title: '視藝科課室耗材', currency: 'HKD', suppliers: '3', items: '5', complete: '15 / 15', expiry: '全數有效', rec: '待人工覆核', state: 'ready', tone: 'ok' }
+    ];
+    const quoteRows = document.getElementById('quoteRows');
+    const listView = document.getElementById('listView');
+    const detailView = document.getElementById('detailView');
+    const overlay = document.getElementById('overlay');
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    let openLayer = null;
+    let version = 3;
+
+    function renderQuotes() {
+      const term = document.getElementById('searchInput').value.trim().toLowerCase();
+      const state = document.getElementById('statusFilter').value;
+      const filtered = quotes.filter((quote) => (state === 'all' || quote.state === state) && `${quote.id} ${quote.title}`.toLowerCase().includes(term));
+      quoteRows.innerHTML = filtered.map((quote) => `<tr><td><button class="row-button quote-row" data-id="${quote.id}">${quote.title}<span class="subline">${quote.id}</span></button></td><td>${quote.currency}</td><td>${quote.suppliers}</td><td>${quote.items}</td><td><span class="status status-${quote.tone === 'ok' ? 'ok' : 'danger'}">${quote.complete}</span></td><td><span class="status status-${quote.tone === 'ok' ? 'ok' : 'danger'}">${quote.expiry}</span></td><td><span class="status status-${quote.rec === '未填寫' ? 'neutral' : quote.tone === 'ok' ? 'warn' : 'danger'}">${quote.rec}</span></td><td><button class="btn btn-quiet quote-row" data-id="${quote.id}" aria-label="開啟 ${quote.title}">查看</button></td></tr>`).join('');
+      document.getElementById('listCount').textContent = `${filtered.length} 個事項`;
+      document.querySelectorAll('.quote-row').forEach((button) => button.addEventListener('click', () => openDetail(button.dataset.id)));
+    }
+    function openDetail(id) {
+      if (id !== 'RQ-2026-0716-04') showToast('此原型聚焦展示 RQ-2026-0716-04 詳情流程。');
+      listView.classList.remove('active'); detailView.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function closeDetail() { detailView.classList.remove('active'); listView.classList.add('active'); }
+    function showToast(message) { document.getElementById('toastText').textContent = message; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 3600); }
+    function openDrawer(id) { closeLayer(); const drawer = document.getElementById(id); openLayer = drawer; overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); drawer.querySelector('button, input, select, textarea')?.focus(); }
+    function openModal(id) { closeLayer(); const modal = document.getElementById(id); openLayer = modal; overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); modal.querySelector('button, input, select, textarea')?.focus(); }
+    function closeLayer() { if (!openLayer) return; openLayer.classList.remove('open'); openLayer.setAttribute('aria-hidden', 'true'); openLayer = null; overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true'); }
+
+    document.getElementById('searchInput').addEventListener('input', renderQuotes);
+    document.getElementById('statusFilter').addEventListener('change', renderQuotes);
+    document.getElementById('backToList').addEventListener('click', closeDetail);
+    document.getElementById('newQuoteBtn').addEventListener('click', () => showToast('已建立空白採購事項草稿，等待人工填寫。'));
+    document.querySelectorAll('[data-drawer]').forEach((button) => button.addEventListener('click', () => openDrawer(button.dataset.drawer)));
+    document.querySelectorAll('.close-layer').forEach((button) => button.addEventListener('click', closeLayer));
+    document.querySelectorAll('.close-modal').forEach((button) => button.addEventListener('click', closeLayer));
+    overlay.addEventListener('click', closeLayer);
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLayer(); });
+
+    document.getElementById('importAcknowledge').addEventListener('change', (event) => { document.getElementById('importBlockMessage').classList.toggle('show', event.target.checked); });
+    document.getElementById('recommendBtn').addEventListener('click', () => openModal('recommendModal'));
+    document.getElementById('recommendVendor').addEventListener('change', (event) => { document.getElementById('nonLowestFields').hidden = !event.target.value || event.target.value === '華文供應'; });
+    document.getElementById('saveRecommendation').addEventListener('click', () => {
+      const vendor = document.getElementById('recommendVendor').value;
+      const needsReason = vendor && vendor !== '華文供應';
+      const reason = document.getElementById('nonLowestReason').value.trim();
+      const opinion = document.getElementById('approvalOpinion').value.trim();
+      document.getElementById('reasonError').classList.toggle('show', needsReason && !reason);
+      document.getElementById('opinionError').classList.toggle('show', needsReason && !opinion);
+      if (!vendor) return showToast('請由人工選擇推薦供應商。');
+      if (needsReason && (!reason || !opinion)) return;
+      document.getElementById('recommendationStatus').textContent = vendor;
+      closeLayer(); showToast(`已儲存人工推薦：${vendor}。未送審、未下單。`);
+    });
+    document.getElementById('exportBtn').addEventListener('click', () => { document.getElementById('nextVersion').textContent = `v${version + 1}`; openModal('exportModal'); });
+    document.getElementById('confirmExport').addEventListener('click', () => { version += 1; const row = document.createElement('div'); row.className = 'version-row'; row.innerHTML = `<div class="version-top"><span>v${version} · 比價明細.xlsx</span><span>剛剛</span></div><span class="version-meta">由 Steven 導出 · 建立新版本，未覆蓋歷史</span>`; document.getElementById('versionList').prepend(row); closeLayer(); showToast(`Excel v${version} 已建立並加入版本紀錄。`); });
+    renderQuotes();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"role" : "puiying_steven_demo_app", "superuser" : false, "createdb" : false, "createrole" : false, "replication" : false, "bypassrls" : false, "role_memberships" : 0, "other_owned_database_count" : 0, "explicit_other_database_acl_count" : 0, "other_database_connect_via_any_grant_count" : 5}

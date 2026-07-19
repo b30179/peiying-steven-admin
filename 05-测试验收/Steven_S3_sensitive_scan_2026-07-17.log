@@ -1,0 +1,13 @@
+{
+  "scanned_files": 181,
+  "private_key_bodies": 0,
+  "session_or_csrf_cookie_values": 0,
+  "bearer_token_literals": 0,
+  "actual_credential_url_literals": 0,
+  "placeholder_or_test_credential_urls": 8,
+  "placeholder_or_test_paths_reviewed": true,
+  "runtime_logs_checked": true,
+  "runtime_sensitive_or_tls_warning_hits": 0,
+  "unexpected_credential_hits": 0,
+  "scan_printed_matches": false
+}

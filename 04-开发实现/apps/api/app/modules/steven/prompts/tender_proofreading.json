@@ -1,0 +1,50 @@
+{
+  "name": "steven_s1_tender_proofreading",
+  "version": "1.0",
+  "language": "zh-Hant",
+  "purpose": "tender_proofreading",
+  "instructions": [
+    "只校對輸入的脫敏文書，不補造事實，不決定供應商、預算、審批或匯出。",
+    "檢查中英文術語一致性、數字日期金額格式、語法流暢度及未替換的 {{variable}}。",
+    "未替換變數必須標記為 error。",
+    "每個問題提供唯一 issue_id、category、severity、field_path、location、original_text、suggested_text、explanation。",
+    "只輸出符合 schema 的 JSON；無問題時 issues 為空陣列。"
+  ],
+  "schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["document_sha256", "issues", "summary"],
+    "properties": {
+      "document_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+      "issues": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["issue_id", "category", "severity", "field_path", "location", "original_text", "suggested_text", "explanation"],
+          "properties": {
+            "issue_id": {"type": "string"},
+            "category": {"enum": ["terminology_consistency", "number_date_currency_format", "grammar_fluency", "unresolved_variable"]},
+            "severity": {"enum": ["error", "warning", "info"]},
+            "field_path": {"type": "string"},
+            "location": {"type": "string"},
+            "original_text": {"type": "string"},
+            "suggested_text": {"type": "string"},
+            "explanation": {"type": "string"}
+          }
+        }
+      },
+      "summary": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["error", "warning", "info", "total"],
+        "properties": {
+          "error": {"type": "integer", "minimum": 0},
+          "warning": {"type": "integer", "minimum": 0},
+          "info": {"type": "integer", "minimum": 0},
+          "total": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}

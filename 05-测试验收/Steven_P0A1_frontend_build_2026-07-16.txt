@@ -1,0 +1,5 @@
+Command: existing Node runtime + existing apps/web/node_modules/next/dist/bin/next build
+Result: PASS
+Next.js: 16.2.10
+Compiled successfully; TypeScript passed; 5/5 static pages generated.
+Verified routes: /login, /api/auth/[...path], /api/steven/[...path], /dashboard/steven, /dashboard/steven/quotes, /dashboard/steven/quotes/[quoteId].

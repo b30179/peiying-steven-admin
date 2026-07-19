@@ -1,0 +1,17 @@
+{
+  "health": "ok",
+  "quote_id": "demo-quote-hkd-2026",
+  "items": 5,
+  "suppliers": 3,
+  "offers": 15,
+  "expected": 15,
+  "comparison_allowed": true,
+  "lowest_supplier_id": "demo-supplier-3",
+  "recommended_supplier_id": null,
+  "cross_role_status": 403,
+  "general_audit_status": 403,
+  "scoped_audit_status": 200,
+  "scoped_audit_count": 0,
+  "list_page": 200,
+  "detail_page": 200
+}

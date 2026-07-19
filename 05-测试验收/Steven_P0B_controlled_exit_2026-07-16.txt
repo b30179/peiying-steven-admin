@@ -1,0 +1,8 @@
+Commands (required PostgreSQL/file environment deliberately unset):
+.venv\Scripts\python.exe scripts\verify_p0b_postgres.py
+.venv\Scripts\python.exe scripts\reconcile_s2_exports.py
+
+Results:
+- verify_p0b_postgres.py: exit 2; reported missing P0B_ADMIN_DATABASE_URL, DATABASE_URL, P0B_FILE_STORAGE_ROOT and bootstrap values.
+- reconcile_s2_exports.py: exit 2; reported missing DATABASE_URL, FILE_STORAGE_ROOT and P0B_RECONCILE_ACTOR_USER_ID.
+- Neither command attempted a database connection or file reconciliation.

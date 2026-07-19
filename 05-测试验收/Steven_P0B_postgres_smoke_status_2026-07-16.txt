@@ -1,0 +1,13 @@
+Actual PostgreSQL empty-database integration smoke: NOT EXECUTED.
+
+Reason:
+- No approved PostgreSQL instance, dedicated credentials or disposable empty database was provided for this phase.
+- psycopg import availability in the current project virtual environment: False.
+- Per task restrictions, no Docker image was pulled, no PostgreSQL or dependency was installed, no real database was contacted, and no host service was modified.
+
+Completed instead:
+- Alembic offline SQL generation through revision 20260716_0005.
+- Python compile checks.
+- In-memory transaction/concurrency contract tests.
+- Controlled missing-configuration exits.
+- A repeatable approved-environment PostgreSQL verification script and wrapper.

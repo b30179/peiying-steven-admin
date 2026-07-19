@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tommy 文件智能歸檔 Demo</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f9;
+        --panel: #ffffff;
+        --panel-soft: #f1f5f8;
+        --text: #1d2939;
+        --muted: #667085;
+        --border: #d8dee6;
+        --brand: #23675f;
+        --brand-strong: #174f49;
+        --accent: #a55b2a;
+        --warning: #936a00;
+        --danger: #b42318;
+        --good: #027a48;
+        --info: #155eef;
+        --shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+        font-size: 14px;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .app-shell {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 224px minmax(0, 1fr);
+      }
+
+      .sidebar {
+        background: #102a2f;
+        color: #eef7f5;
+        padding: 18px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .brand {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        background: #d9ebe7;
+        color: #123a36;
+        border-radius: 8px;
+        font-weight: 700;
+      }
+
+      .brand h1 {
+        margin: 0 0 3px;
+        font-size: 16px;
+        letter-spacing: 0;
+      }
+
+      .brand p,
+      .muted {
+        color: var(--muted);
+      }
+
+      .brand p {
+        color: #a7c3bd;
+        margin: 0;
+        font-size: 12px;
+      }
+
+      .nav-list {
+        display: grid;
+        gap: 5px;
+      }
+
+      .nav-item {
+        border: 0;
+        color: #dcecea;
+        background: transparent;
+        text-align: left;
+        padding: 10px 12px;
+        border-radius: 8px;
+      }
+
+      .nav-item.active,
+      .nav-item:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .sidebar-note {
+        margin-top: auto;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        display: grid;
+        gap: 8px;
+        line-height: 1.5;
+      }
+
+      .main {
+        padding: 16px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        margin: 0 0 4px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .topbar h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .topbar p {
+        margin: 4px 0 0;
+        color: var(--muted);
+      }
+
+      .topbar-actions,
+      .form-actions,
+      .table-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        border: 1px solid var(--border);
+        background: #ffffff;
+        color: var(--text);
+        border-radius: 8px;
+        padding: 8px 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .button.primary {
+        background: var(--brand);
+        border-color: var(--brand);
+        color: #ffffff;
+      }
+
+      .button.ghost {
+        background: transparent;
+      }
+
+      .button.small {
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
+        gap: 10px;
+      }
+
+      .stat {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 12px;
+        box-shadow: var(--shadow);
+      }
+
+      .stat span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .stat strong {
+        display: block;
+        margin-top: 4px;
+        font-size: 22px;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(560px, 1fr) minmax(380px, 0.75fr);
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .left-stack {
+        display: grid;
+        grid-template-rows: auto;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .queue-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .queue-item {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--panel-soft);
+        padding: 10px;
+        display: grid;
+        gap: 5px;
+        min-width: 0;
+      }
+
+      .queue-item strong,
+      .queue-item span {
+        overflow-wrap: anywhere;
+      }
+
+      .progress {
+        height: 8px;
+        border-radius: 999px;
+        background: #e4e7ec;
+        overflow: hidden;
+      }
+
+      .progress span {
+        display: block;
+        height: 100%;
+        background: var(--brand);
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        padding: 12px;
+        min-width: 0;
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .panel-header h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .filter-bar {
+        display: none;
+        grid-template-columns: minmax(180px, 1fr) 132px 132px;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .toolbar-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .toolbar-line .muted {
+        margin: 0;
+      }
+
+      .field,
+      .review-field {
+        display: grid;
+        gap: 4px;
+      }
+
+      .field label,
+      .review-field label {
+        color: #344054;
+        font-weight: 700;
+        font-size: 13px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 9px;
+        background: #ffffff;
+        color: var(--text);
+      }
+
+      textarea {
+        min-height: 78px;
+        resize: vertical;
+      }
+
+      .table-wrap {
+        overflow: visible;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 0;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        padding: 8px 8px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+        font-size: 13px;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      th {
+        color: #344054;
+        background: #f8fafc;
+        font-size: 12px;
+      }
+
+      th:nth-child(1),
+      td:nth-child(1) {
+        width: 18%;
+      }
+
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 12%;
+      }
+
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 25%;
+      }
+
+      th:nth-child(4),
+      td:nth-child(4),
+      th:nth-child(5),
+      td:nth-child(5) {
+        width: 12%;
+      }
+
+      th:nth-child(6),
+      td:nth-child(6),
+      th:nth-child(7),
+      td:nth-child(7) {
+        width: 10%;
+      }
+
+      tbody tr {
+        background: #ffffff;
+      }
+
+      tbody tr.active {
+        background: #eef7f5;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 3px 7px;
+        font-size: 11px;
+        font-weight: 700;
+        background: #eef4ff;
+        color: #1849a9;
+        white-space: nowrap;
+      }
+
+      .pill.good {
+        color: var(--good);
+        background: #ecfdf3;
+      }
+
+      .pill.warning {
+        color: var(--warning);
+        background: #fffaeb;
+      }
+
+      .pill.danger {
+        color: var(--danger);
+        background: #fef3f2;
+      }
+
+      .detail-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      .preview-box,
+      .ocr-box {
+        border: 1px solid var(--border);
+        background: var(--panel-soft);
+        border-radius: 8px;
+        padding: 10px;
+      }
+
+      .preview-box {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 86px 1fr;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .file-meta {
+        min-width: 0;
+        display: grid;
+        gap: 4px;
+      }
+
+      .file-meta strong,
+      .file-meta span {
+        overflow-wrap: anywhere;
+      }
+
+      .file-sheet {
+        width: 74px;
+        height: 58px;
+        border: 1px solid #cbd5e1;
+        background: #ffffff;
+        border-radius: 6px;
+        padding: 8px;
+        display: grid;
+        gap: 5px;
+      }
+
+      .file-line {
+        height: 5px;
+        background: #d8dee6;
+        border-radius: 999px;
+      }
+
+      .file-line.short {
+        width: 65%;
+      }
+
+      .ocr-box {
+        color: #344054;
+        line-height: 1.5;
+        white-space: pre-wrap;
+        max-height: 150px;
+        overflow: auto;
+      }
+
+      .review-card {
+        display: grid;
+        gap: 10px;
+      }
+
+      .confidence {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: center;
+        padding: 9px;
+        border: 1px solid #fedf89;
+        background: #fffaeb;
+        border-radius: 8px;
+      }
+
+      .source-note {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 2px;
+      }
+
+      .audit-list {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .audit-list li {
+        padding-left: 10px;
+        border-left: 3px solid var(--border);
+        color: var(--muted);
+        line-height: 1.35;
+        font-size: 12px;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(16, 24, 40, 0.45);
+      }
+
+      .modal-backdrop.open {
+        display: flex;
+      }
+
+      .modal {
+        width: min(680px, 100%);
+        max-height: calc(100vh - 48px);
+        overflow: auto;
+        background: var(--panel);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .modal-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .modal-grid .full {
+        grid-column: 1 / -1;
+      }
+
+      .toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        padding: 12px 14px;
+        border-radius: 8px;
+        background: #102a2f;
+        color: #ffffff;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        transform: translateY(10px);
+        transition: 0.2s ease;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1180px) {
+        .app-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-list {
+          grid-template-columns: repeat(4, minmax(130px, 1fr));
+          overflow: auto;
+        }
+
+        .workspace,
+        .left-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .left-stack {
+          grid-template-rows: auto;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .main,
+        .sidebar {
+          padding: 16px;
+        }
+
+        .topbar,
+        .topbar-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .stats-grid,
+        .filter-bar,
+        .queue-grid,
+        .modal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-list {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">PY</div>
+          <div>
+            <h1>培英 AI 行政平台</h1>
+            <p>Tommy 專屬工作台 Demo</p>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="主功能">
+          <button class="nav-item">總覽</button>
+          <button class="nav-item active">Tommy 文件歸檔</button>
+          <button class="nav-item">租務提醒</button>
+          <button class="nav-item">掃描件處理</button>
+          <button class="nav-item">歸檔記錄</button>
+          <button class="nav-item">個人設定</button>
+        </nav>
+
+        <div class="sidebar-note">
+          <strong>目前身份：Tommy</strong>
+          <span>只顯示已授權的文件歸檔、租務提醒與掃描件處理功能。</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="topbar">
+          <div>
+            <p class="eyebrow">TOMMY / 文件智能歸檔</p>
+            <h2>掃描件分類、命名與關鍵資料提取</h2>
+            <p>上傳文件後，系統會自動 OCR、分類、建議檔名，並在人工確認後完成歸檔。</p>
+          </div>
+          <div class="topbar-actions">
+            <button class="button ghost" type="button" id="moreBtn">更多操作</button>
+            <button class="button primary" type="button" id="uploadBtn">上傳文件</button>
+          </div>
+        </section>
+
+        <section class="workspace">
+          <section class="left-stack">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h3>文件列表</h3>
+                </div>
+                <button class="button small" type="button" id="filterBtn">篩選</button>
+              </div>
+
+              <div class="toolbar-line">
+                <p class="muted">4 份文件，1 份等待復核</p>
+                <button class="button small" type="button" id="refreshBtn">刷新</button>
+              </div>
+
+              <div class="filter-bar">
+                <div class="field">
+                  <label for="searchInput">搜尋</label>
+                  <input id="searchInput" placeholder="文件名、分類、金額或日期" />
+                </div>
+                <div class="field">
+                  <label for="categorySelect">分類</label>
+                  <select id="categorySelect">
+                    <option>全部分類</option>
+                    <option>財務</option>
+                    <option>人事</option>
+                    <option>租務</option>
+                    <option>教育局通告</option>
+                    <option>會議</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="statusSelect">狀態</label>
+                  <select id="statusSelect">
+                    <option>全部狀態</option>
+                    <option>待復核</option>
+                    <option>已確認</option>
+                    <option>已歸檔</option>
+                    <option>異常</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>文件名</th>
+                      <th>建議分類</th>
+                      <th>建議新檔名</th>
+                      <th>金額</th>
+                      <th>到期日</th>
+                      <th>狀態</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="active">
+                      <td>scan_20260715_001.pdf</td>
+                      <td><span class="pill">租務</span></td>
+                      <td>2026-07-15_租務_俊傑花園租金通知.pdf</td>
+                      <td>HK$ 18,500</td>
+                      <td>2026-07-31</td>
+                      <td><span class="pill warning">待復核</span></td>
+                      <td><button class="button small primary" type="button" data-action="review">復核</button></td>
+                    </tr>
+                    <tr>
+                      <td>receipt_property_072.pdf</td>
+                      <td><span class="pill">財務</span></td>
+                      <td>2026-07-14_財務_維修費收據.pdf</td>
+                      <td>HK$ 2,300</td>
+                      <td>-</td>
+                      <td><span class="pill good">已確認</span></td>
+                      <td><button class="button small" type="button" data-action="archive">歸檔</button></td>
+                    </tr>
+                    <tr>
+                      <td>edb_notice_0713.pdf</td>
+                      <td><span class="pill">教育局通告</span></td>
+                      <td>2026-07-13_教育局通告_暑期安全指引.pdf</td>
+                      <td>-</td>
+                      <td>2026-07-25</td>
+                      <td><span class="pill good">已歸檔</span></td>
+                      <td><button class="button small" type="button" data-action="view">查看</button></td>
+                    </tr>
+                    <tr>
+                      <td>unknown_scan_055.jpg</td>
+                      <td><span class="pill danger">未能判斷</span></td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td><span class="pill danger">異常</span></td>
+                      <td><button class="button small" type="button" data-action="manual">手動處理</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </section>
+
+          <aside class="detail-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <h3>文件預覽 / OCR 原文</h3>
+                <span class="pill warning">等待確認</span>
+              </div>
+              <div class="preview-box">
+                <div class="file-sheet" aria-hidden="true">
+                  <div class="file-line"></div>
+                  <div class="file-line short"></div>
+                  <div class="file-line"></div>
+                  <div class="file-line short"></div>
+                  <div class="file-line"></div>
+                </div>
+                <div class="file-meta">
+                  <strong>scan_20260715_001.pdf</strong>
+                  <span class="muted">OCR 任務：job_ocr_20260715_001</span>
+                  <span class="muted">耗時 18 秒，等待人工確認</span>
+                </div>
+              </div>
+              <div class="ocr-box">
+俊傑花園租金通知
+
+單位：A座 8樓 B室
+租戶：陳先生
+月份：2026年7月
+租金：HK$ 18,500
+繳付限期：2026年7月31日
+
+請於限期前完成繳付，並保留付款證明。
+              </div>
+            </section>
+
+            <section class="panel review-card">
+              <div class="panel-header">
+                <h3>AI 分類結果確認</h3>
+                <button class="button small" type="button" id="detailBtn">查看詳情</button>
+              </div>
+
+              <div class="confidence">
+                <div>
+                  <strong>AI 信心：中</strong>
+                  <div class="muted">偵測到金額及日期，但仍需人工確認租戶與單位資料。</div>
+                </div>
+                <span class="pill warning">needs_review</span>
+              </div>
+
+              <div class="review-field">
+                <label for="categoryField">分類</label>
+                <select id="categoryField">
+                  <option selected>租務</option>
+                  <option>財務</option>
+                  <option>人事</option>
+                  <option>教育局通告</option>
+                  <option>會議</option>
+                  <option>其他</option>
+                </select>
+                <span class="source-note">來源：AI 分類，根據「俊傑花園」「租金通知」判斷</span>
+              </div>
+
+              <div class="review-field">
+                <label for="filenameField">建議檔名</label>
+                <input id="filenameField" value="2026-07-15_租務_俊傑花園租金通知.pdf" />
+                <span class="source-note">格式：YYYY-MM-DD_類別_標題</span>
+              </div>
+
+              <div class="review-field">
+                <label for="amountField">金額</label>
+                <input id="amountField" value="18500" />
+                <span class="source-note">來源：OCR 抽取「租金：HK$ 18,500」</span>
+              </div>
+
+              <div class="review-field">
+                <label for="dueDateField">到期日</label>
+                <input id="dueDateField" type="date" value="2026-07-31" />
+                <span class="source-note">來源：OCR 抽取「繳付限期：2026年7月31日」</span>
+              </div>
+
+              <div class="form-actions">
+                <button class="button primary" type="button" id="confirmBtn">確認保存</button>
+                <button class="button" type="button" id="archiveBtn">確認並歸檔</button>
+                <button class="button ghost" type="button" id="flagBtn">標記異常</button>
+              </div>
+            </section>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="actionsDialog" aria-hidden="true">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="actionsTitle">
+        <div class="panel-header">
+          <div>
+            <h3 id="actionsTitle">更多操作</h3>
+            <p class="muted">把不常用功能收在这里，保持主界面干净。</p>
+          </div>
+          <button class="button small ghost" type="button" data-close-dialog="actionsDialog">關閉</button>
+        </div>
+        <div class="modal-grid">
+          <div class="field full">
+            <label for="modalSearchInput">搜尋文件</label>
+            <input id="modalSearchInput" placeholder="輸入文件名、分類、金額或日期" />
+          </div>
+          <div class="field">
+            <label for="modalCategorySelect">分類</label>
+            <select id="modalCategorySelect">
+              <option>全部分類</option>
+              <option>財務</option>
+              <option>人事</option>
+              <option>租務</option>
+              <option>教育局通告</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="modalStatusSelect">狀態</label>
+            <select id="modalStatusSelect">
+              <option>全部狀態</option>
+              <option>待復核</option>
+              <option>已確認</option>
+              <option>已歸檔</option>
+              <option>異常</option>
+            </select>
+          </div>
+          <div class="form-actions full">
+            <button class="button primary" type="button" id="applyFilterBtn">套用篩選</button>
+            <button class="button" type="button" id="runOcrBtn">批量運行 OCR</button>
+            <button class="button" type="button" id="exportBtn">導出清單</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="detailDialog" aria-hidden="true">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+        <div class="panel-header">
+          <div>
+            <h3 id="detailTitle">文件詳情</h3>
+            <p class="muted">摘要、AI 来源和审计记录集中在详情里查看。</p>
+          </div>
+          <button class="button small ghost" type="button" data-close-dialog="detailDialog">關閉</button>
+        </div>
+        <div class="modal-grid">
+          <div class="review-field full">
+            <label for="summaryField">摘要</label>
+            <textarea id="summaryField">俊傑花園 A座 8樓 B室 2026年7月租金通知，租金 HK$ 18,500，繳付限期為 2026-07-31。</textarea>
+          </div>
+          <div class="full">
+            <h3>審計記錄</h3>
+            <ul class="audit-list">
+              <li>09:12 Tommy 上傳文件 scan_20260715_001.pdf</li>
+              <li>09:13 OCR Worker 完成文字識別</li>
+              <li>09:13 AI Worker 建議分類為「租務」</li>
+              <li>09:14 等待 Tommy 人工確認</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const toast = document.getElementById("toast");
+      const showToast = (message) => {
+        toast.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2200);
+      };
+
+      const openDialog = (id) => {
+        const dialog = document.getElementById(id);
+        dialog.classList.add("open");
+        dialog.setAttribute("aria-hidden", "false");
+      };
+
+      const closeDialog = (id) => {
+        const dialog = document.getElementById(id);
+        dialog.classList.remove("open");
+        dialog.setAttribute("aria-hidden", "true");
+      };
+
+      document.getElementById("uploadBtn").addEventListener("click", () => {
+        showToast("Demo：正式系统会打开文件上传对话框。");
+      });
+
+      document.getElementById("moreBtn").addEventListener("click", () => {
+        openDialog("actionsDialog");
+      });
+
+      document.getElementById("filterBtn").addEventListener("click", () => {
+        openDialog("actionsDialog");
+      });
+
+      document.getElementById("detailBtn").addEventListener("click", () => {
+        openDialog("detailDialog");
+      });
+
+      document.getElementById("applyFilterBtn").addEventListener("click", () => {
+        closeDialog("actionsDialog");
+        showToast("筛选已套用。");
+      });
+
+      document.getElementById("runOcrBtn").addEventListener("click", () => {
+        closeDialog("actionsDialog");
+        showToast("已创建批量 OCR 任务，结果会进入待复核列表。");
+      });
+
+      document.getElementById("exportBtn").addEventListener("click", () => {
+        closeDialog("actionsDialog");
+        showToast("Demo：正式系统会导出当前筛选结果。");
+      });
+
+      document.getElementById("refreshBtn").addEventListener("click", () => {
+        showToast("列表已刷新。");
+      });
+
+      document.getElementById("confirmBtn").addEventListener("click", () => {
+        showToast("AI 结果已确认，审计日志已记录。");
+      });
+
+      document.getElementById("archiveBtn").addEventListener("click", () => {
+        showToast("文件已归档到租务目录。");
+      });
+
+      document.getElementById("flagBtn").addEventListener("click", () => {
+        showToast("已标记异常，等待人工处理。");
+      });
+
+      document.querySelectorAll("[data-action]").forEach((button) => {
+        button.addEventListener("click", () => {
+          showToast(`已选择操作：${button.textContent.trim()}`);
+        });
+      });
+
+      document.querySelectorAll("[data-close-dialog]").forEach((button) => {
+        button.addEventListener("click", () => closeDialog(button.dataset.closeDialog));
+      });
+
+      document.querySelectorAll(".modal-backdrop").forEach((dialog) => {
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) closeDialog(dialog.id);
+        });
+      });
+    </script>
+  </body>
+</html>

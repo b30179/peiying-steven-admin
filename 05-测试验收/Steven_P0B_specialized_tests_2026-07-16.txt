@@ -1,0 +1,7 @@
+Commands:
+.venv\Scripts\python.exe -m pytest apps/api/tests/test_p0b_persistence_concurrency.py apps/api/tests/test_s2_quotes.py -q
+.venv\Scripts\python.exe -m pytest apps/api/tests/test_p0b_persistence_concurrency.py -q
+
+Results:
+- P0-B + S2 focused suite: 21 passed, 1 existing deprecation warning.
+- P0-B focused suite after final verification-script cleanup: 10 passed.

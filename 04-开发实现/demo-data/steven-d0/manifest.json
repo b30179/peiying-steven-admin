@@ -1,0 +1,42 @@
+{
+  "dataset": "Steven Demo D0 sanitized quotation fixtures",
+  "version": "1.0",
+  "generated_on": "2026-07-17",
+  "classification": "fully_sanitized_demo_data",
+  "currency_baseline": "HKD",
+  "normal_baseline": "3 suppliers x 5 items = 15 offer lines",
+  "contains_real_data": false,
+  "artifacts": [
+    {
+      "file": "01_supplier_a_zh_scanned.pdf",
+      "format": "chinese_scanned_pdf",
+      "ground_truth": "01_supplier_a_zh_scanned.ground-truth.json"
+    },
+    {
+      "file": "02_supplier_b_mixed_numbers.pdf",
+      "format": "english_chinese_mixed_pdf",
+      "ground_truth": "02_supplier_b_mixed_numbers.ground-truth.json"
+    },
+    {
+      "file": "03_supplier_c_bilingual_table.png",
+      "companion_pdf": "03_supplier_c_bilingual_table.pdf",
+      "format": "bilingual_table_png_pdf",
+      "ground_truth": "03_supplier_c_bilingual_table.ground-truth.json"
+    },
+    {
+      "file": "04_exception_missing_item.pdf",
+      "format": "exception_missing_item",
+      "ground_truth": "04_exception_missing_item.ground-truth.json"
+    },
+    {
+      "file": "05_exception_currency_conflict.pdf",
+      "format": "exception_currency_conflict",
+      "ground_truth": "05_exception_currency_conflict.ground-truth.json"
+    },
+    {
+      "file": "06_exception_expired_quote.pdf",
+      "format": "exception_expired_quote",
+      "ground_truth": "06_exception_expired_quote.ground-truth.json"
+    }
+  ]
+}

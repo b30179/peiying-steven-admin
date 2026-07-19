@@ -1,0 +1,323 @@
+{
+  "error_type": "ResetBlocked",
+  "old_plan": {
+    "actors": {
+      "admin": "4917d61f-180d-4227-b0d4-832253bb51ba",
+      "approver": "b10f450a-75f6-4f93-bf7a-f704bd24d168",
+      "steven": "b4688feb-3685-4534-96fe-cb1942d02a4d"
+    },
+    "database": "puiying_steven_demo",
+    "files": [
+      {
+        "actual_sha256": "74c9d59832f079da3d2ba9b756c5ddfaa4351bf0509899423735382170351220",
+        "actual_size_bytes": 37836,
+        "db_sha256": "74c9d59832f079da3d2ba9b756c5ddfaa4351bf0509899423735382170351220",
+        "db_size_bytes": 37836,
+        "exists": true,
+        "file_id": "a54d1f6c-246c-4625-81a0-22e3a8a51f80",
+        "module": "s1",
+        "storage_key": "generated/tenders/a1978058-b9bd-4c6e-ac23-73385cbd85cf/20260717_正式文书_脱敏采购服务邀请文书_v1.docx",
+        "version_id": "7374c3f0-e647-4840-ba9a-034ecdb17929"
+      },
+      {
+        "actual_sha256": "16e915cce25c61148d7560731b5b37992c8b20b34905078782d7ee2aa11a719c",
+        "actual_size_bytes": 37834,
+        "db_sha256": "16e915cce25c61148d7560731b5b37992c8b20b34905078782d7ee2aa11a719c",
+        "db_size_bytes": 37834,
+        "exists": true,
+        "file_id": "9c8ea5b0-349d-4e25-8f04-6d1643490a46",
+        "module": "s1",
+        "storage_key": "generated/tenders/a1978058-b9bd-4c6e-ac23-73385cbd85cf/20260717_正式文书_脱敏采购服务邀请文书_v2.docx",
+        "version_id": "407d2356-5d66-47bc-a74e-6b817cccffdc"
+      },
+      {
+        "actual_sha256": "e2326ce556b41a1bb81db810fd3fb5fe570b68d7c60e4f63599aa0c19be3a147",
+        "actual_size_bytes": 37836,
+        "db_sha256": "e2326ce556b41a1bb81db810fd3fb5fe570b68d7c60e4f63599aa0c19be3a147",
+        "db_size_bytes": 37836,
+        "exists": true,
+        "file_id": "c2b74d6f-749f-40aa-b3c9-2eec76444dc7",
+        "module": "s1",
+        "storage_key": "generated/tenders/a1978058-b9bd-4c6e-ac23-73385cbd85cf/20260717_正式文书_脱敏采购服务邀请文书_v3.docx",
+        "version_id": "d95c017c-25b5-4698-8918-72de44756622"
+      },
+      {
+        "actual_sha256": "1026068d5cec8c203dc3687f0f7915603921c8a25c50a2369d06c296023ac738",
+        "actual_size_bytes": 9308,
+        "db_sha256": "1026068d5cec8c203dc3687f0f7915603921c8a25c50a2369d06c296023ac738",
+        "db_size_bytes": 9308,
+        "exists": true,
+        "file_id": null,
+        "module": "s2",
+        "storage_key": "generated/quotes/5588f937-2936-4bb8-b6e2-c94a21914262/20260717_采购比价_DEMO-S2-STANDARD-2026071_v1.xlsx",
+        "version_id": "b47c648e-99f2-4e2a-a7e0-3788a8a91077"
+      },
+      {
+        "actual_sha256": "1026068d5cec8c203dc3687f0f7915603921c8a25c50a2369d06c296023ac738",
+        "actual_size_bytes": 9308,
+        "db_sha256": "1026068d5cec8c203dc3687f0f7915603921c8a25c50a2369d06c296023ac738",
+        "db_size_bytes": 9308,
+        "exists": true,
+        "file_id": null,
+        "module": "s2",
+        "storage_key": "generated/quotes/5588f937-2936-4bb8-b6e2-c94a21914262/20260717_采购比价_DEMO-S2-STANDARD-2026071_v2.xlsx",
+        "version_id": "2b8300a7-ef00-4422-8f70-d83f65714d42"
+      },
+      {
+        "actual_sha256": "1026068d5cec8c203dc3687f0f7915603921c8a25c50a2369d06c296023ac738",
+        "actual_size_bytes": 9308,
+        "db_sha256": "1026068d5cec8c203dc3687f0f7915603921c8a25c50a2369d06c296023ac738",
+        "db_size_bytes": 9308,
+        "exists": true,
+        "file_id": null,
+        "module": "s2",
+        "storage_key": "generated/quotes/5588f937-2936-4bb8-b6e2-c94a21914262/20260717_采购比价_DEMO-S2-STANDARD-2026071_v3.xlsx",
+        "version_id": "de14c99c-ebfe-4eba-831d-a8a39e09ed5d"
+      },
+      {
+        "actual_sha256": "1ca6ebeeac7d7775297cbdb86d9c9f35b5c257b68e6a432696757c03d73a300f",
+        "actual_size_bytes": 6160,
+        "db_sha256": "1ca6ebeeac7d7775297cbdb86d9c9f35b5c257b68e6a432696757c03d73a300f",
+        "db_size_bytes": 6160,
+        "exists": true,
+        "file_id": "1ce04f52-06c4-41d6-b0c7-3a887f21de86",
+        "module": "s3",
+        "storage_key": "generated/inventory/4faa51c7-e5b1-4391-b453-5c0a54ce3b81/20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v1.xlsx",
+        "version_id": "21abf675-3ba1-4612-a5e5-e20014439d63"
+      },
+      {
+        "actual_sha256": "fa0630de699744015baeb4103d8ee629f909f166df98df4b0b6cff4f21156499",
+        "actual_size_bytes": 6160,
+        "db_sha256": "fa0630de699744015baeb4103d8ee629f909f166df98df4b0b6cff4f21156499",
+        "db_size_bytes": 6160,
+        "exists": true,
+        "file_id": "cd311514-2dd9-40b8-ab38-b560eeca2a0d",
+        "module": "s3",
+        "storage_key": "generated/inventory/4faa51c7-e5b1-4391-b453-5c0a54ce3b81/20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v2.xlsx",
+        "version_id": "ebd974e1-c46f-4886-98b2-e8fe4aa20ab1"
+      },
+      {
+        "actual_sha256": "608be93c2911910967a3d2947e0065e98407d632f278f02dc3fd893d932046cb",
+        "actual_size_bytes": 6160,
+        "db_sha256": "608be93c2911910967a3d2947e0065e98407d632f278f02dc3fd893d932046cb",
+        "db_size_bytes": 6160,
+        "exists": true,
+        "file_id": "fb9ceae9-1e44-4db8-830c-7ed5d122f98b",
+        "module": "s3",
+        "storage_key": "generated/inventory/4faa51c7-e5b1-4391-b453-5c0a54ce3b81/20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v3.xlsx",
+        "version_id": "00ffb9fb-66c5-4d17-927e-9d25840968c4"
+      }
+    ],
+    "namespace": {
+      "s1_document_number": "DEMO-S1-STANDARD-20260717",
+      "s1_template_code": "DEMO-SERVICE-INVITATION",
+      "s1_template_id": "template-s1-demo-001",
+      "s2_subject": "DEMO-S2-STANDARD-20260717",
+      "s3_count_number": "DEMO-S3-STANDARD-20260717",
+      "s3_skus": [
+        "DEMO-S3-PAPER-A4",
+        "DEMO-S3-PEN-BLUE",
+        "DEMO-S3-MARKER-WHITEBOARD",
+        "DEMO-S3-FOLDER-A4",
+        "DEMO-S3-STAPLES-246"
+      ]
+    },
+    "object_ids": {
+      "s1": "a1978058-b9bd-4c6e-ac23-73385cbd85cf",
+      "s2": "5588f937-2936-4bb8-b6e2-c94a21914262",
+      "s3": "4faa51c7-e5b1-4391-b453-5c0a54ce3b81"
+    },
+    "preserved": [
+      "accounts_roles_permissions_sessions",
+      "alembic_schema_and_revision",
+      "platform_and_business_audit_history",
+      "non_standard_demo_and_non_demo_data",
+      "project_tls_and_runtime_configuration"
+    ],
+    "revision": "20260717_0009",
+    "row_counts": {
+      "s1_candidate_links": 0,
+      "s1_jobs": 1,
+      "s1_suppliers": 3,
+      "s1_versions": 3,
+      "s2_approvals": 1,
+      "s2_batches": 1,
+      "s2_candidate_links": 0,
+      "s2_items": 5,
+      "s2_jobs": 1,
+      "s2_offers": 15,
+      "s2_suppliers": 3,
+      "s2_versions": 3,
+      "s3_candidate_links": 0,
+      "s3_counts": 1,
+      "s3_lines": 5,
+      "s3_versions": 3
+    }
+  },
+  "phase": "failed_standard_namespace_preserved",
+  "plan_hash": "98d26992ae047b2064e23406f885f174a65158e7ac35550ff5219105a3a30779",
+  "quarantined_files": [
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\tenders\\a1978058-b9bd-4c6e-ac23-73385cbd85cf\\20260717_正式文书_脱敏采购服务邀请文书_v1.docx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\tenders\\a1978058-b9bd-4c6e-ac23-73385cbd85cf\\20260717_正式文书_脱敏采购服务邀请文书_v1.docx"
+    },
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\tenders\\a1978058-b9bd-4c6e-ac23-73385cbd85cf\\20260717_正式文书_脱敏采购服务邀请文书_v2.docx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\tenders\\a1978058-b9bd-4c6e-ac23-73385cbd85cf\\20260717_正式文书_脱敏采购服务邀请文书_v2.docx"
+    },
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\tenders\\a1978058-b9bd-4c6e-ac23-73385cbd85cf\\20260717_正式文书_脱敏采购服务邀请文书_v3.docx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\tenders\\a1978058-b9bd-4c6e-ac23-73385cbd85cf\\20260717_正式文书_脱敏采购服务邀请文书_v3.docx"
+    },
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\quotes\\5588f937-2936-4bb8-b6e2-c94a21914262\\20260717_采购比价_DEMO-S2-STANDARD-2026071_v1.xlsx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\quotes\\5588f937-2936-4bb8-b6e2-c94a21914262\\20260717_采购比价_DEMO-S2-STANDARD-2026071_v1.xlsx"
+    },
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\quotes\\5588f937-2936-4bb8-b6e2-c94a21914262\\20260717_采购比价_DEMO-S2-STANDARD-2026071_v2.xlsx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\quotes\\5588f937-2936-4bb8-b6e2-c94a21914262\\20260717_采购比价_DEMO-S2-STANDARD-2026071_v2.xlsx"
+    },
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\quotes\\5588f937-2936-4bb8-b6e2-c94a21914262\\20260717_采购比价_DEMO-S2-STANDARD-2026071_v3.xlsx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\quotes\\5588f937-2936-4bb8-b6e2-c94a21914262\\20260717_采购比价_DEMO-S2-STANDARD-2026071_v3.xlsx"
+    },
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\inventory\\4faa51c7-e5b1-4391-b453-5c0a54ce3b81\\20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v1.xlsx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\inventory\\4faa51c7-e5b1-4391-b453-5c0a54ce3b81\\20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v1.xlsx"
+    },
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\inventory\\4faa51c7-e5b1-4391-b453-5c0a54ce3b81\\20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v2.xlsx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\inventory\\4faa51c7-e5b1-4391-b453-5c0a54ce3b81\\20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v2.xlsx"
+    },
+    {
+      "quarantine": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\demo-reset-quarantine\\3edb857b78394bf8afc6a8165ef6c339\\generated\\inventory\\4faa51c7-e5b1-4391-b453-5c0a54ce3b81\\20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v3.xlsx",
+      "source": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1\\generated\\inventory\\4faa51c7-e5b1-4391-b453-5c0a54ce3b81\\20260717_消耗品盘点_DEMO-S3-STANDARD-20260717_v3.xlsx"
+    }
+  ],
+  "run_id": "3edb857b78394bf8afc6a8165ef6c339",
+  "staging": {
+    "names": {
+      "s1": "DEMO-S1-STAGING-3edb857b78394bf8afc6a8165ef6c339",
+      "s2": "DEMO-S2-STAGING-3edb857b78394bf8afc6a8165ef6c339",
+      "s3": "DEMO-S3-STAGING-3edb857b78394bf8afc6a8165ef6c339"
+    },
+    "objects": {
+      "s1": {
+        "id": "16ee2787-b060-488e-8965-29b48aebcfb5",
+        "request_id": "demo-reset-3edb857b78394bf8afc6a8165ef6c339-s1",
+        "versions": [
+          1,
+          2,
+          3
+        ]
+      },
+      "s2": {
+        "id": "7f7ae47b-ea4e-4910-a16a-b5a3459d35b1",
+        "request_id": "demo-reset-3edb857b78394bf8afc6a8165ef6c339-s2",
+        "totals": {
+          "SUP-A": "2605.00",
+          "SUP-B": "2622.00",
+          "SUP-C": "2583.00"
+        },
+        "versions": [
+          1,
+          2,
+          3
+        ]
+      },
+      "s3": {
+        "id": "f7d41814-91e5-415f-90e3-2756cf4edbe3",
+        "request_id": "demo-reset-3edb857b78394bf8afc6a8165ef6c339-s3",
+        "versions": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "verification": {
+      "files": {
+        "s1": [
+          {
+            "sha256": "a19ce11cf43f1aba4867086cf8ec222ba2dee7ddf3ef2f9f592f8f73926348c0",
+            "size_bytes": 37859,
+            "storage_key": "generated/tenders/16ee2787-b060-488e-8965-29b48aebcfb5/20260717_正式文书_脱敏采购服务邀请文书_v1.docx",
+            "version_id": "85b13a52-33ab-45b5-85f3-65e2d64d2730"
+          },
+          {
+            "sha256": "480341f428bcfc9f05bfb7b50de868cade21d95958c250d55065f65d94203545",
+            "size_bytes": 37857,
+            "storage_key": "generated/tenders/16ee2787-b060-488e-8965-29b48aebcfb5/20260717_正式文书_脱敏采购服务邀请文书_v2.docx",
+            "version_id": "801ed8ac-85e8-44bf-acbc-34765fbde120"
+          },
+          {
+            "sha256": "36fc5cd8fcfe374a51cfc1bbe9f324f90d689c986f8d50a87f6f2e86406d76af",
+            "size_bytes": 37860,
+            "storage_key": "generated/tenders/16ee2787-b060-488e-8965-29b48aebcfb5/20260717_正式文书_脱敏采购服务邀请文书_v3.docx",
+            "version_id": "255a2bcd-aead-47a0-a027-5aa66ad6c13a"
+          }
+        ],
+        "s2": [
+          {
+            "sha256": "1ce02ece4d76cf34814178b1b4a21142e879d094a8dec7b50d8bab51340744bc",
+            "size_bytes": 9321,
+            "storage_key": "generated/quotes/7f7ae47b-ea4e-4910-a16a-b5a3459d35b1/20260717_采购比价_DEMO-S2-STAGING-3edb857b_v1.xlsx",
+            "version_id": "2f39e534-9c60-4ef8-bca2-808d09bbe46c"
+          },
+          {
+            "sha256": "1ce02ece4d76cf34814178b1b4a21142e879d094a8dec7b50d8bab51340744bc",
+            "size_bytes": 9321,
+            "storage_key": "generated/quotes/7f7ae47b-ea4e-4910-a16a-b5a3459d35b1/20260717_采购比价_DEMO-S2-STAGING-3edb857b_v2.xlsx",
+            "version_id": "2dcf1e81-06c5-4fce-b50c-60518d9ac099"
+          },
+          {
+            "sha256": "1ce02ece4d76cf34814178b1b4a21142e879d094a8dec7b50d8bab51340744bc",
+            "size_bytes": 9321,
+            "storage_key": "generated/quotes/7f7ae47b-ea4e-4910-a16a-b5a3459d35b1/20260717_采购比价_DEMO-S2-STAGING-3edb857b_v3.xlsx",
+            "version_id": "9ff3a752-d117-443a-a7c4-a5cd419cb8cb"
+          }
+        ],
+        "s3": [
+          {
+            "sha256": "2b1f921b9e8fcfd92d5775818f401eca079b7d5bd07d42d0995ac799391adcc6",
+            "size_bytes": 6182,
+            "storage_key": "generated/inventory/f7d41814-91e5-415f-90e3-2756cf4edbe3/20260717_消耗品盘点_DEMO-S3-STAGING-3edb857b78394bf8afc6a8165ef6c339_v1.xlsx",
+            "version_id": "d016048b-ced2-482c-a948-65ea4fe36a6d"
+          },
+          {
+            "sha256": "f8cf747798e2c5e1863e97d27ddd18f1de5c6c3209f546d89b8930b0074b213f",
+            "size_bytes": 6183,
+            "storage_key": "generated/inventory/f7d41814-91e5-415f-90e3-2756cf4edbe3/20260717_消耗品盘点_DEMO-S3-STAGING-3edb857b78394bf8afc6a8165ef6c339_v2.xlsx",
+            "version_id": "08098b21-5d31-43bc-939b-237828069b9a"
+          },
+          {
+            "sha256": "d81a48b9be68f0266edad5241454d494707a1cfb9e02c4916243104c8c3f32e7",
+            "size_bytes": 6183,
+            "storage_key": "generated/inventory/f7d41814-91e5-415f-90e3-2756cf4edbe3/20260717_消耗品盘点_DEMO-S3-STAGING-3edb857b78394bf8afc6a8165ef6c339_v3.xlsx",
+            "version_id": "1a608c22-2cb8-404e-acf0-d75818a8e087"
+          }
+        ]
+      },
+      "object_ids": {
+        "s1": "16ee2787-b060-488e-8965-29b48aebcfb5",
+        "s2": "7f7ae47b-ea4e-4910-a16a-b5a3459d35b1",
+        "s3": "f7d41814-91e5-415f-90e3-2756cf4edbe3"
+      },
+      "ready_versions": {
+        "s1": 3,
+        "s2": 3,
+        "s3": 3
+      },
+      "statuses": {
+        "s1": "approved",
+        "s2": "exported",
+        "s3": "approved"
+      },
+      "totals": {
+        "SUP-A": "2605.00",
+        "SUP-B": "2622.00",
+        "SUP-C": "2583.00"
+      }
+    }
+  }
+}

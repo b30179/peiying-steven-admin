@@ -1,0 +1,97 @@
+{
+  "generated_on": "2026-07-17",
+  "dataset": "Steven Demo D0 fully sanitized fixtures",
+  "contains_real_data": false,
+  "visual_review": {
+    "status": "passed",
+    "checks": [
+      "no_clipping",
+      "no_garbled_chinese",
+      "no_black_blocks",
+      "no_overlap"
+    ],
+    "preview_directory": "05-测试验收\\Steven_Demo_D0_样本预览"
+  },
+  "files": [
+    {
+      "file": "01_supplier_a_zh_scanned.ground-truth.json",
+      "size_bytes": 1454,
+      "sha256": "2b2df0ae490fcd6efab9e6ea3b86b486bdc30c7f214af712aaca887e13800407"
+    },
+    {
+      "file": "01_supplier_a_zh_scanned.pdf",
+      "size_bytes": 165835,
+      "sha256": "fd642a744e0d6da8d3c64f834d5b15cc55477204d5526636ed41adcea93c31eb",
+      "pages": 1
+    },
+    {
+      "file": "02_supplier_b_mixed_numbers.ground-truth.json",
+      "size_bytes": 1456,
+      "sha256": "7cb0de6efdb3645ee766bd3f59b4982fdb37da9b87c32ed35bf3597885ec9fe6"
+    },
+    {
+      "file": "02_supplier_b_mixed_numbers.pdf",
+      "size_bytes": 57762,
+      "sha256": "a24e73ec26f436621300385714c8e29af7a5f45361d18be0967242a18a45033c",
+      "pages": 1
+    },
+    {
+      "file": "03_supplier_c_bilingual_table.ground-truth.json",
+      "size_bytes": 1456,
+      "sha256": "7daa6c3c80eb0d5e915f066be1adbfc428fbee4a57579555a5cfa0343e35fb48"
+    },
+    {
+      "file": "03_supplier_c_bilingual_table.pdf",
+      "size_bytes": 177893,
+      "sha256": "1b4af819d1f2ecce8f711dbef54a6b9a4c5bb3d0a85a234a83c16a9babcaa8b6",
+      "pages": 1
+    },
+    {
+      "file": "03_supplier_c_bilingual_table.png",
+      "size_bytes": 164057,
+      "sha256": "a52ae85e4b56cec5d3ccc1d0d50cd72f999f82244ead4dd07c5ef122fecff3ab",
+      "dimensions": [
+        1654,
+        2339
+      ]
+    },
+    {
+      "file": "04_exception_missing_item.ground-truth.json",
+      "size_bytes": 1280,
+      "sha256": "51ba2cff514c49ef5ebce440bdf42aa0ad523828608f492dc934fe87af93beb8"
+    },
+    {
+      "file": "04_exception_missing_item.pdf",
+      "size_bytes": 167102,
+      "sha256": "2965728c044a1a23beba9ba0a3c035933a56e4c35c3ff98f981907be1dff78f5",
+      "pages": 1
+    },
+    {
+      "file": "05_exception_currency_conflict.ground-truth.json",
+      "size_bytes": 1484,
+      "sha256": "66553631fd8533ab822172fef1ca5257c6aa3d257aa5cfb236c2bff34e060426"
+    },
+    {
+      "file": "05_exception_currency_conflict.pdf",
+      "size_bytes": 177988,
+      "sha256": "4f1cb1011115aa85a85ebdd53fe24f2ab669947972aee49e649542d68840942f",
+      "pages": 1
+    },
+    {
+      "file": "06_exception_expired_quote.ground-truth.json",
+      "size_bytes": 1492,
+      "sha256": "282cbb1a62c2a81ef4ebaefd7860d3bb51d8a84bc45ce62d60ffe10dc0e8c2b8"
+    },
+    {
+      "file": "06_exception_expired_quote.pdf",
+      "size_bytes": 177717,
+      "sha256": "bebd6c8d6aa15f24601b583e1822af3e2d6d8a61fa4935a78c2c978280278249",
+      "pages": 1
+    },
+    {
+      "file": "manifest.json",
+      "size_bytes": 1458,
+      "sha256": "61350aef2c27849a614a38ef2e3d6d02176dbd72b75c06109877dd3bd457768d"
+    }
+  ]
+}

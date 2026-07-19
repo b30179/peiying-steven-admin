@@ -1,0 +1,2 @@
+Command: .venv/Scripts/python.exe -m compileall -q apps/api/app scripts/reset_steven_demo_data.py
+ExitCode: 0

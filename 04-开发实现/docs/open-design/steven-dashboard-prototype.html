@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steven · 采购行政工作台</title>
+  <style>
+    :root {
+      --nav: #0f4946;
+      --nav-deep: #0a3735;
+      --nav-soft: #1d5d59;
+      --canvas: #f3f5f4;
+      --surface: #ffffff;
+      --text: #172321;
+      --muted: #687572;
+      --line: #dce3e0;
+      --teal: #16736d;
+      --teal-soft: #e6f2f0;
+      --amber: #a96500;
+      --amber-soft: #fff3d7;
+      --orange: #b74a14;
+      --orange-soft: #fff0e9;
+      --red: #b42318;
+      --red-soft: #feeceb;
+      --blue: #205e96;
+      --blue-soft: #eaf3fb;
+      --shadow: 0 1px 2px rgba(20, 37, 34, .05), 0 8px 24px rgba(20, 37, 34, .05);
+      --font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; color: var(--text); background: var(--canvas); font-family: var(--font-sans); font-size: 14px; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid rgba(22, 115, 109, .35); outline-offset: 2px; }
+    .app-shell { min-height: 100vh; display: grid; grid-template-columns: 248px minmax(0, 1fr); }
+    .sidebar { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; padding: 22px 14px 16px; color: #e9f4f1; background: var(--nav); }
+    .brand { display: flex; align-items: center; gap: 11px; padding: 0 10px 25px; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 9px; color: #0c3c39; background: #eaf4f0; font-size: 17px; font-weight: 800; }
+    .brand-copy { display: grid; gap: 2px; }
+    .brand-copy strong { font-size: 14px; color: #fff; }
+    .brand-copy span { color: #bbd5cf; font-size: 12px; }
+    .nav-label { margin: 26px 10px 8px; color: #a9c9c2; font-size: 11px; font-weight: 700; }
+    .nav-list { display: grid; gap: 3px; padding: 0; margin: 0; list-style: none; }
+    .nav-item { width: 100%; display: flex; align-items: center; gap: 11px; min-height: 42px; padding: 0 11px; border: 0; border-radius: 6px; color: #dcece8; text-align: left; background: transparent; }
+    .nav-item:hover { background: rgba(255,255,255,.09); }
+    .nav-item.active { color: #fff; background: var(--nav-soft); font-weight: 700; box-shadow: inset 3px 0 0 #d3eee5; }
+    .nav-icon, .icon { width: 18px; height: 18px; flex: 0 0 auto; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-footer { margin-top: auto; padding: 14px 10px 0; border-top: 1px solid rgba(255,255,255,.15); color: #b7d0ca; line-height: 1.55; font-size: 12px; }
+    .nav-footer strong { color: #eef7f4; }
+    .main-area { min-width: 0; }
+    .topbar { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 34px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.92); }
+    .workspace-name { display: flex; align-items: center; gap: 9px; color: #4e5b58; font-size: 13px; }
+    .workspace-name strong { color: var(--text); font-size: 14px; }
+    .workspace-dot { width: 5px; height: 5px; border-radius: 50%; background: #8c9995; }
+    .top-actions { display: flex; align-items: center; gap: 14px; }
+    .icon-button { position: relative; width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 7px; color: #3c4b47; background: #fff; }
+    .icon-button:hover { background: #f6f8f7; }
+    .notification-dot { position: absolute; top: 7px; right: 7px; width: 7px; height: 7px; border: 2px solid #fff; border-radius: 50%; background: var(--red); }
+    .avatar-menu { display: flex; align-items: center; gap: 9px; padding: 3px 4px 3px 3px; border: 1px solid transparent; border-radius: 7px; color: #293633; background: transparent; }
+    .avatar-menu:hover { border-color: var(--line); background: #fff; }
+    .avatar { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #37736f; font-size: 12px; font-weight: 800; }
+    .avatar-menu span { font-size: 13px; font-weight: 700; }
+    .page { max-width: 1440px; margin: 0 auto; padding: 32px 34px 48px; }
+    .page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 27px; }
+    .eyebrow { margin: 0 0 7px; color: var(--teal); font-size: 12px; font-weight: 800; }
+    h1 { margin: 0; font-size: 30px; line-height: 1.25; letter-spacing: 0; }
+    .subtitle { max-width: 650px; margin: 10px 0 0; color: var(--muted); line-height: 1.65; }
+    .header-actions { display: flex; align-items: center; gap: 9px; padding-top: 10px; }
+    .button { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 0 13px; border: 1px solid var(--line); border-radius: 6px; color: #30403b; background: #fff; font-size: 13px; font-weight: 700; white-space: nowrap; }
+    .button:hover { background: #f6f9f8; }
+    .button.primary { border-color: var(--teal); color: #fff; background: var(--teal); }
+    .button.primary:hover { background: #105f5a; }
+    .button.danger { border-color: var(--red); color: #fff; background: var(--red); }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 22px; align-items: start; }
+    .stack { display: grid; gap: 22px; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .section-head h2 { margin: 0; font-size: 16px; }
+    .section-hint { color: var(--muted); font-size: 12px; }
+    .text-button { padding: 3px 0; border: 0; color: var(--teal); background: none; font-size: 13px; font-weight: 700; }
+    .text-button:hover { color: #0d5d58; text-decoration: underline; }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .metric-card { min-height: 124px; padding: 16px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); box-shadow: var(--shadow); }
+    .metric-card header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .metric-card span { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .metric-number { margin-top: 16px; font-family: var(--font-mono); font-size: 30px; font-weight: 700; line-height: 1; }
+    .metric-note { margin-top: 8px; color: var(--muted); font-size: 12px; }
+    .tone-amber .metric-number { color: var(--amber); }
+    .tone-orange .metric-number { color: var(--orange); }
+    .tone-red .metric-number { color: var(--red); }
+    .status-icon { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; }
+    .status-icon.amber { color: var(--amber); background: var(--amber-soft); }
+    .status-icon.orange { color: var(--orange); background: var(--orange-soft); }
+    .status-icon.red { color: var(--red); background: var(--red-soft); }
+    .status-icon.neutral { color: var(--blue); background: var(--blue-soft); }
+    .panel { border: 1px solid var(--line); border-radius: 7px; background: var(--surface); box-shadow: var(--shadow); overflow: hidden; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .filters { display: flex; align-items: center; gap: 8px; }
+    .filter-button { min-height: 30px; display: inline-flex; align-items: center; gap: 6px; padding: 0 9px; border: 1px solid var(--line); border-radius: 5px; color: #43514d; background: #fff; font-size: 12px; font-weight: 700; }
+    .filter-button:hover { background: #f7f9f8; }
+    .todo-list { list-style: none; padding: 0; margin: 0; }
+    .todo-item { display: grid; grid-template-columns: 32px minmax(0,1fr) auto; align-items: center; gap: 12px; padding: 15px 16px; border-bottom: 1px solid #edf0ef; }
+    .todo-item:last-child { border-bottom: 0; }
+    .todo-item:hover { background: #fbfcfc; }
+    .module-icon { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 6px; color: var(--teal); background: var(--teal-soft); }
+    .module-icon.orange { color: var(--orange); background: var(--orange-soft); }
+    .module-icon.red { color: var(--red); background: var(--red-soft); }
+    .todo-copy { min-width: 0; }
+    .todo-title { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+    .todo-title strong { font-size: 14px; line-height: 1.45; }
+    .todo-meta { display: flex; align-items: center; gap: 8px; margin-top: 4px; color: var(--muted); font-size: 12px; }
+    .todo-meta .icon { width: 13px; height: 13px; }
+    .badge { display: inline-flex; align-items: center; gap: 4px; min-height: 20px; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .badge.amber { color: #835000; background: var(--amber-soft); }
+    .badge.orange { color: #933812; background: var(--orange-soft); }
+    .badge.red { color: #942019; background: var(--red-soft); }
+    .badge.teal { color: #12605b; background: var(--teal-soft); }
+    .todo-action { min-width: 76px; }
+    .side-panel { padding: 17px; }
+    .activity-list { display: grid; gap: 0; }
+    .activity { position: relative; display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 10px; padding: 0 0 16px; }
+    .activity:last-child { padding-bottom: 0; }
+    .activity:not(:last-child)::before { content: ""; position: absolute; top: 25px; bottom: 0; left: 11px; width: 1px; background: var(--line); }
+    .activity-dot { width: 23px; height: 23px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--teal); background: #fff; }
+    .activity-dot .icon { width: 13px; height: 13px; }
+    .activity p { margin: 0; color: #3a4844; font-size: 13px; line-height: 1.5; }
+    .activity time { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
+    .review-note { margin-top: 17px; padding: 12px; border: 1px solid #cae3de; border-radius: 6px; color: #28554f; background: #f3faf8; font-size: 12px; line-height: 1.6; }
+    .review-note strong { display: block; margin-bottom: 3px; }
+    .module-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .module-card { min-height: 174px; display: flex; flex-direction: column; padding: 17px; border: 1px solid var(--line); border-radius: 7px; color: inherit; text-align: left; background: #fff; box-shadow: var(--shadow); }
+    .module-card:hover { border-color: #a9ccc5; transform: translateY(-1px); }
+    .module-card .module-icon { margin-bottom: 15px; }
+    .module-card h3 { margin: 0; font-size: 15px; }
+    .module-card p { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .module-card footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 15px; color: var(--teal); font-size: 12px; font-weight: 800; }
+    .module-card footer .badge { margin-right: auto; }
+    .drawer-backdrop, .modal-backdrop { position: fixed; inset: 0; z-index: 20; display: none; background: rgba(18, 35, 31, .38); }
+    .drawer-backdrop.open, .modal-backdrop.open { display: block; }
+    .drawer { position: fixed; z-index: 21; top: 0; right: 0; width: min(510px, 100vw); height: 100vh; display: flex; flex-direction: column; background: #fff; box-shadow: -10px 0 30px rgba(20,37,34,.18); transform: translateX(105%); transition: transform .22s ease; }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 22px 23px 18px; border-bottom: 1px solid var(--line); }
+    .drawer-head h2 { margin: 3px 0 0; font-size: 20px; }
+    .close-button { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 6px; color: #45534f; background: #fff; }
+    .drawer-body { flex: 1; overflow: auto; padding: 20px 23px; }
+    .drawer-intro { margin: 0 0 18px; color: var(--muted); line-height: 1.6; }
+    .review-block { margin-bottom: 14px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+    .review-block h3 { display: flex; align-items: center; gap: 8px; margin: 0; padding: 11px 13px; border-bottom: 1px solid var(--line); background: #fafcfc; font-size: 13px; }
+    .kv { display: grid; grid-template-columns: 118px minmax(0,1fr); gap: 10px; padding: 11px 13px; border-bottom: 1px solid #edf0ef; font-size: 13px; }
+    .kv:last-child { border-bottom: 0; }
+    .kv dt { color: var(--muted); }
+    .kv dd { margin: 0; line-height: 1.5; }
+    .disabled-ai { padding: 12px 13px; color: #67736f; background: #f4f6f5; font-size: 13px; line-height: 1.55; }
+    .exception { display: flex; gap: 10px; padding: 12px 13px; color: #8f211b; background: var(--red-soft); font-size: 13px; line-height: 1.55; }
+    .drawer-foot { display: flex; justify-content: flex-end; gap: 9px; padding: 16px 23px; border-top: 1px solid var(--line); background: #fff; }
+    .modal-backdrop { z-index: 30; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-backdrop.open { display: flex; }
+    .modal { width: min(440px, 100%); padding: 22px; border-radius: 8px; background: #fff; box-shadow: 0 18px 48px rgba(20,37,34,.25); }
+    .modal-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; color: var(--amber); background: var(--amber-soft); }
+    .modal h2 { margin: 14px 0 8px; font-size: 19px; }
+    .modal p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 22px; }
+    .toast-region { position: fixed; z-index: 50; top: 18px; right: 18px; display: grid; gap: 9px; width: min(380px, calc(100vw - 36px)); }
+    .toast { display: flex; align-items: flex-start; gap: 10px; padding: 13px; border: 1px solid #b9d9d1; border-radius: 7px; color: #19584f; background: #f0faf7; box-shadow: 0 9px 24px rgba(21,52,45,.13); animation: appear .2s ease; }
+    .toast.error { border-color: #efb7b2; color: #93271e; background: #fff4f3; }
+    .toast .icon { margin-top: 1px; }
+    .toast strong { display: block; font-size: 13px; }
+    .toast span { display: block; margin-top: 2px; font-size: 12px; line-height: 1.45; }
+    .empty-state, .error-state { display: none; padding: 36px 22px; text-align: center; }
+    .empty-state.open, .error-state.open { display: block; }
+    .state-icon { width: 40px; height: 40px; display: grid; place-items: center; margin: 0 auto 10px; border-radius: 50%; color: var(--muted); background: #f0f3f2; }
+    .error-state .state-icon { color: var(--red); background: var(--red-soft); }
+    .empty-state h3, .error-state h3 { margin: 0; font-size: 15px; }
+    .empty-state p, .error-state p { margin: 7px auto 15px; color: var(--muted); line-height: 1.55; }
+    .loading-list { display: none; padding: 16px; }
+    .loading-list.open { display: grid; gap: 13px; }
+    .skeleton { height: 47px; border-radius: 5px; background: linear-gradient(90deg, #edf1ef 25%, #f7f9f8 50%, #edf1ef 75%); background-size: 200% 100%; animation: pulse 1.2s linear infinite; }
+    @keyframes pulse { to { background-position: -200% 0; } }
+    @keyframes appear { from { transform: translateY(-8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @media (max-width: 1120px) { .layout { grid-template-columns: 1fr; } .side-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } .review-note { margin-top: 0; } }
+    @media (max-width: 920px) { .app-shell { grid-template-columns: 72px minmax(0, 1fr); } .sidebar { padding: 17px 10px; align-items: center; } .brand { padding: 0 0 20px; } .brand-copy, .nav-label, .nav-item span, .nav-footer { display: none; } .nav-list { width: 100%; } .nav-item { justify-content: center; padding: 0; } .nav-item.active { box-shadow: none; } .topbar, .page { padding-left: 24px; padding-right: 24px; } }
+    @media (max-width: 720px) { .app-shell { display: block; } .sidebar { position: sticky; z-index: 10; top: 0; width: 100%; height: 58px; flex-direction: row; padding: 8px 12px; overflow-x: auto; } .brand { flex: 0 0 auto; padding: 0 12px 0 0; border: 0; } .brand-mark { width: 31px; height: 31px; } .nav-list { display: flex; gap: 3px; width: auto; } .nav-item { width: 39px; min-width: 39px; min-height: 39px; } .topbar { height: 60px; padding: 0 16px; } .workspace-name { font-size: 12px; } .workspace-name strong { font-size: 13px; } .avatar-menu span { display: none; } .page { padding: 22px 16px 36px; } .page-header { display: grid; gap: 16px; } h1 { font-size: 25px; } .header-actions { padding-top: 0; flex-wrap: wrap; } .metric-grid, .module-grid, .side-panel { grid-template-columns: 1fr; } .todo-item { grid-template-columns: 31px minmax(0,1fr); } .todo-action { grid-column: 2; justify-self: start; } .toolbar { align-items: flex-start; flex-direction: column; } .top-actions { gap: 6px; } .top-actions .icon-button { width: 35px; height: 35px; } }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Steven 工作台导航" data-od-id="steven-sidebar">
+      <div class="brand" data-od-id="school-brand">
+        <div class="brand-mark" aria-hidden="true">英</div>
+        <div class="brand-copy"><strong>香港培英中学</strong><span>行政智能工作台</span></div>
+      </div>
+      <p class="nav-label">STEVEN 专属模块</p>
+      <nav aria-label="工作台模块">
+        <ul class="nav-list">
+          <li><button class="nav-item active" type="button" data-nav="总览" aria-current="page"><svg class="nav-icon"><use href="#i-grid" /></svg><span>总览</span></button></li>
+          <li><button class="nav-item" type="button" data-nav="标书与报价单"><svg class="nav-icon"><use href="#i-file" /></svg><span>标书与报价单</span></button></li>
+          <li><button class="nav-item" type="button" data-nav="采购比价"><svg class="nav-icon"><use href="#i-scale" /></svg><span>采购比价</span></button></li>
+          <li><button class="nav-item" type="button" data-nav="消耗品库存"><svg class="nav-icon"><use href="#i-box" /></svg><span>消耗品库存</span></button></li>
+          <li><button class="nav-item" type="button" data-nav="历史记录"><svg class="nav-icon"><use href="#i-clock" /></svg><span>历史记录</span></button></li>
+          <li><button class="nav-item" type="button" data-nav="个人设置"><svg class="nav-icon"><use href="#i-settings" /></svg><span>个人设置</span></button></li>
+        </ul>
+      </nav>
+      <div class="nav-footer"><strong>复核模式已启用</strong><br />系统仅生成建议，不会代替您执行决定。</div>
+    </aside>
+
+    <main class="main-area" data-od-id="steven-dashboard-main">
+      <header class="topbar" data-od-id="topbar">
+        <div class="workspace-name"><strong>Steven</strong><span class="workspace-dot"></span><span>采购行政</span></div>
+        <div class="top-actions">
+          <button class="icon-button" type="button" data-action="notifications" title="通知（占位）" aria-label="通知（占位）"><svg class="icon"><use href="#i-bell" /></svg><span class="notification-dot" aria-hidden="true"></span></button>
+          <button class="avatar-menu" type="button" data-action="profile" aria-label="打开 Steven 的个人菜单"><span class="avatar" aria-hidden="true">ST</span><span>Steven</span><svg class="icon" aria-hidden="true"><use href="#i-chevron" /></svg></button>
+        </div>
+      </header>
+
+      <div class="page">
+        <header class="page-header" data-od-id="dashboard-page-header">
+          <div>
+            <p class="eyebrow">Steven · 採購行政工作台</p>
+            <h1 data-od-id="priority-heading">今日优先处理</h1>
+            <p class="subtitle">所有建议均须由您复核；系统不会自动审批、选择供应商或下单。</p>
+          </div>
+          <div class="header-actions" data-od-id="dashboard-actions">
+            <button class="button primary" type="button" data-action="new-tender"><svg class="icon"><use href="#i-plus" /></svg>新建标书</button>
+            <button class="button" type="button" data-action="new-comparison"><svg class="icon"><use href="#i-scale" /></svg>新建比价</button>
+            <button class="button" type="button" data-action="stocktake"><svg class="icon"><use href="#i-clipboard" /></svg>录入盘点</button>
+          </div>
+        </header>
+
+        <div class="layout">
+          <div class="stack">
+            <section data-od-id="metrics-section">
+              <div class="section-head"><h2>处理概况</h2><span class="section-hint">截至今日 09:30</span></div>
+              <div class="metric-grid">
+                <article class="metric-card tone-amber" data-od-id="metric-pending-documents"><header><span>待审批文书</span><i class="status-icon amber"><svg class="icon"><use href="#i-file-check" /></svg></i></header><div class="metric-number">2</div><div class="metric-note">需人工审阅后提交</div></article>
+                <article class="metric-card tone-orange" data-od-id="metric-missing-quotes"><header><span>待补报价</span><i class="status-icon orange"><svg class="icon"><use href="#i-alert" /></svg></i></header><div class="metric-number">3</div><div class="metric-note">异常：供应商回覆不完整</div></article>
+                <article class="metric-card tone-red" data-od-id="metric-low-stock"><header><span>低库存</span><i class="status-icon red"><svg class="icon"><use href="#i-box" /></svg></i></header><div class="metric-number">1</div><div class="metric-note">需确认实际数量</div></article>
+                <article class="metric-card" data-od-id="metric-exports"><header><span>本月已导出</span><i class="status-icon neutral"><svg class="icon"><use href="#i-download" /></svg></i></header><div class="metric-number">8</div><div class="metric-note">已记录至审计历史</div></article>
+              </div>
+            </section>
+
+            <section data-od-id="priority-todos-section">
+              <div class="section-head"><h2>优先待办</h2><span class="section-hint">最多显示 5 项，按截止日与异常程度排序</span></div>
+              <div class="panel">
+                <div class="toolbar">
+                  <div class="filters">
+                    <button class="filter-button" type="button" data-action="filter"><svg class="icon"><use href="#i-filter" /></svg>全部待办</button>
+                    <button class="filter-button" type="button" data-action="import"><svg class="icon"><use href="#i-download" /></svg>导入</button>
+                    <button class="filter-button" type="button" data-action="export"><svg class="icon"><use href="#i-download" /></svg>导出</button>
+                    <button class="filter-button" type="button" data-action="state-loading">加载状态</button>
+                    <button class="filter-button" type="button" data-action="state-empty">空状态</button>
+                    <button class="filter-button" type="button" data-action="state-error">错误状态</button>
+                  </div>
+                  <button class="text-button" type="button" data-action="audit">查看审计记录</button>
+                </div>
+                <ul class="todo-list" id="todo-list" data-od-id="priority-todo-list">
+                  <li class="todo-item"><div class="module-icon"><svg class="icon"><use href="#i-file" /></svg></div><div class="todo-copy"><div class="todo-title"><strong>礼堂空调保养待审核</strong><span class="badge amber"><svg class="icon"><use href="#i-alert" /></svg>待复核</span></div><div class="todo-meta"><svg class="icon"><use href="#i-clock" /></svg><span>标书与报价单 · 今日 11:30 前</span></div></div><button class="button todo-action" type="button" data-review="礼堂空调保养待审核">复核</button></li>
+                  <li class="todo-item"><div class="module-icon orange"><svg class="icon"><use href="#i-scale" /></svg></div><div class="todo-copy"><div class="todo-title"><strong>暑期清洁用品缺一家报价</strong><span class="badge orange"><svg class="icon"><use href="#i-alert" /></svg>待补报价</span></div><div class="todo-meta"><svg class="icon"><use href="#i-calendar" /></svg><span>采购比价 · 明日截止</span></div></div><button class="button todo-action" type="button" data-review="暑期清洁用品缺一家报价">查看差异</button></li>
+                  <li class="todo-item"><div class="module-icon red"><svg class="icon"><use href="#i-box" /></svg></div><div class="todo-copy"><div class="todo-title"><strong>A4 影印纸低库存建议 20 包</strong><span class="badge red"><svg class="icon"><use href="#i-alert" /></svg>低库存</span></div><div class="todo-meta"><svg class="icon"><use href="#i-clock" /></svg><span>消耗品库存 · 请先核对实物</span></div></div><button class="button todo-action" type="button" data-review="A4 影印纸低库存建议 20 包">人工确认</button></li>
+                  <li class="todo-item"><div class="module-icon orange"><svg class="icon"><use href="#i-calendar" /></svg></div><div class="todo-copy"><div class="todo-title"><strong>毕业礼堂布置截止将至</strong><span class="badge orange"><svg class="icon"><use href="#i-clock" /></svg>截止提醒</span></div><div class="todo-meta"><svg class="icon"><use href="#i-calendar" /></svg><span>标书与报价单 · 7 月 18 日 17:00</span></div></div><button class="button todo-action" type="button" data-review="毕业礼堂布置截止将至">查看附件</button></li>
+                  <li class="todo-item"><div class="module-icon"><svg class="icon"><use href="#i-clipboard" /></svg></div><div class="todo-copy"><div class="todo-title"><strong>美术室耗材待人工确认差异</strong><span class="badge teal"><svg class="icon"><use href="#i-user-check" /></svg>人工确认</span></div><div class="todo-meta"><svg class="icon"><use href="#i-clock" /></svg><span>消耗品库存 · 今天</span></div></div><button class="button todo-action" type="button" data-review="美术室耗材待人工确认差异">复核</button></li>
+                </ul>
+                <div class="loading-list" id="loading-state" aria-live="polite"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+                <div class="empty-state" id="empty-state"><div class="state-icon"><svg class="icon"><use href="#i-check" /></svg></div><h3>目前没有待办项目</h3><p>新出现的审核、异常或截止提醒会显示在这里。</p><button class="button" type="button" data-action="restore-list">返回待办列表</button></div>
+                <div class="error-state" id="error-state"><div class="state-icon"><svg class="icon"><use href="#i-alert" /></svg></div><h3>待办项目暂时无法载入</h3><p>请检查连接后重试；数据未变更，也没有任何操作被自动执行。</p><button class="button" type="button" data-action="restore-list">重新尝试</button></div>
+              </div>
+            </section>
+
+            <section data-od-id="modules-section">
+              <div class="section-head"><h2>工作模块</h2><span class="section-hint">每一步都保留人工决定权</span></div>
+              <div class="module-grid">
+                <button class="module-card" type="button" data-action="open-module" data-module="标书与报价单" data-od-id="module-tender"><div class="module-icon"><svg class="icon"><use href="#i-file" /></svg></div><h3>标书与报价单</h3><p>统一整理文件、附件与提交前复核事项。</p><footer><span class="badge amber">2 待复核</span><svg class="icon"><use href="#i-arrow" /></svg></footer></button>
+                <button class="module-card" type="button" data-action="open-module" data-module="采购比价" data-od-id="module-comparison"><div class="module-icon orange"><svg class="icon"><use href="#i-scale" /></svg></div><h3>采购比价</h3><p>并列呈现供应商报价，异常须人工处理。</p><footer><span class="badge orange">3 待补报价</span><svg class="icon"><use href="#i-arrow" /></svg></footer></button>
+                <button class="module-card" type="button" data-action="open-module" data-module="消耗品库存" data-od-id="module-inventory"><div class="module-icon red"><svg class="icon"><use href="#i-box" /></svg></div><h3>消耗品库存</h3><p>记录盘点差异和补货建议，不自动确认实物。</p><footer><span class="badge red">1 低库存</span><svg class="icon"><use href="#i-arrow" /></svg></footer></button>
+              </div>
+            </section>
+          </div>
+
+          <aside class="panel side-panel" aria-label="最近活动" data-od-id="recent-activity">
+            <div><div class="section-head"><h2>最近活动</h2><button class="text-button" type="button" data-action="history">查看历史记录</button></div>
+              <div class="activity-list">
+                <article class="activity"><div class="activity-dot"><svg class="icon"><use href="#i-download" /></svg></div><div><p>已导出「6 月消耗品盘点摘要」</p><time>今天 09:14 · Steven</time></div></article>
+                <article class="activity"><div class="activity-dot"><svg class="icon"><use href="#i-paperclip" /></svg></div><div><p>「礼堂空调保养」新增 2 个附件</p><time>今天 08:47 · 文件同步</time></div></article>
+                <article class="activity"><div class="activity-dot"><svg class="icon"><use href="#i-user-check" /></svg></div><div><p>已记录美术室耗材差异的人工备注</p><time>昨天 16:30 · Steven</time></div></article>
+                <article class="activity"><div class="activity-dot"><svg class="icon"><use href="#i-alert" /></svg></div><div><p>采购比价发现一份缺失报价</p><time>昨天 14:08 · 规则检查</time></div></article>
+              </div>
+            </div>
+            <div class="review-note"><strong>复核提示</strong>导入、导出、附件查看和审计记录均会打开详情界面；不会在背景中执行审批、选商、下单或库存确认。</div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  <aside class="drawer" id="review-drawer" aria-modal="true" aria-labelledby="drawer-title" role="dialog" data-od-id="review-drawer">
+    <header class="drawer-head"><div><p class="eyebrow">规则 / AI 草稿复核</p><h2 id="drawer-title">礼堂空调保养待审核</h2></div><button class="close-button" type="button" data-action="close-drawer" aria-label="关闭复核抽屉"><svg class="icon"><use href="#i-close" /></svg></button></header>
+    <div class="drawer-body">
+      <p class="drawer-intro">请逐项核对资料与异常。此页面仅支持人工确认“已复核”；不会审批文书、选择供应商、创建订单或发送通知。</p>
+      <div id="review-content">
+        <section class="review-block"><h3><svg class="icon"><use href="#i-file" /></svg>字段来源</h3><dl><div class="kv"><dt>项目名称</dt><dd id="review-item-name">礼堂空调保养待审核</dd></div><div class="kv"><dt>资料来源</dt><dd>供应商报价单 PDF · 2026-07-16 08:47 导入</dd></div><div class="kv"><dt>附件详情</dt><dd><button class="text-button" type="button" data-action="attachment">查看 2 个附件</button></dd></div></dl></section>
+        <section class="review-block"><h3><svg class="icon"><use href="#i-checklist" /></svg>规则说明</h3><dl><div class="kv"><dt>检查规则</dt><dd>报价有效期、服务范围、负责人签署栏</dd></div><div class="kv"><dt>规则结果</dt><dd><span class="badge amber">需人工核实</span> 有效期填写格式不一致</dd></div></dl></section>
+        <section class="review-block"><h3><svg class="icon"><use href="#i-spark" /></svg>AI 草稿</h3><div class="disabled-ai"><strong>本轮 AI 功能已禁用</strong><br />系统不会根据 AI 生成结果自动采取任何行动。待启用后，草稿仍只供 Steven 人工复核。</div></section>
+        <section class="review-block"><h3><svg class="icon"><use href="#i-alert" /></svg>异常原因</h3><div class="exception"><svg class="icon"><use href="#i-alert" /></svg><div>服务日期与报价有效期存在格式差异，需以原始附件为准并由您确认。</div></div></section>
+        <section class="review-block"><h3><svg class="icon"><use href="#i-shield" /></svg>人工确认</h3><dl><div class="kv"><dt>允许操作</dt><dd>记录“已复核”状态及备注</dd></div><div class="kv"><dt>禁止操作</dt><dd>审批、选定供应商、下单、发信、确认实物库存</dd></div></dl></section>
+      </div>
+      <div id="detail-content" style="display:none"></div>
+    </div>
+    <footer class="drawer-foot"><button class="button" type="button" data-action="close-drawer">取消</button><button class="button primary" id="review-confirm-button" type="button" data-action="confirm-review">确认已人工复核</button></footer>
+  </aside>
+
+  <div class="modal-backdrop" id="confirm-modal" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" data-od-id="confirmation-dialog"><div class="modal-icon"><svg class="icon"><use href="#i-alert" /></svg></div><h2 id="modal-title">确认记录人工复核？</h2><p id="modal-copy">这会在审计历史中记录 Steven 已复核该事项。不会审批文书、选商、下单、发信或确认库存。</p><div class="modal-actions"><button class="button" type="button" data-action="cancel-confirm">返回检查</button><button class="button primary" type="button" data-action="final-confirm">确认记录</button></div></section></div>
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h6"/></symbol>
+    <symbol id="i-file-check" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 15l2 2 4-4"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="m16 16 3-7 3 7a3 3 0 0 1-6 0ZM2 16l3-7 3 7a3 3 0 0 1-6 0ZM7 21h10M12 3v18M3 6h18"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m21 8-9 5-9-5 9-5 9 5Z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.2 2.2-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.56v.1h-3.1v-.1a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-2.2-2.2.06-.06A1.7 1.7 0 0 0 6.74 15a1.7 1.7 0 0 0-1.56-1.04h-.1v-3.1h.1A1.7 1.7 0 0 0 6.74 9.8a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.2-2.2.06.06a1.7 1.7 0 0 0 1.88.34 1.7 1.7 0 0 0 1.04-1.56v-.1h3.1v.1a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.2 2.2-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.04h.1v3.1h-.1A1.7 1.7 0 0 0 19.4 15Z"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M9 12h6M9 16h4"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.8 20h18.4L12 3Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16M7 12h10M10 19h4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol><symbol id="i-user-check" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 16l2 2 4-4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-paperclip" viewBox="0 0 24 24"><path d="m21.4 11.6-8.7 8.7a6 6 0 0 1-8.5-8.5l8.6-8.7a4 4 0 0 1 5.7 5.7l-8.7 8.7a2 2 0 0 1-2.8-2.8l8-8"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-checklist" viewBox="0 0 24 24"><path d="m9 6 2 2 4-4M9 13l2 2 4-4M9 20l2 2 4-4M4 7h.01M4 14h.01M4 21h.01"/></symbol><symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3-1.5 5.5L5 10l5.5 1.5L12 17l1.5-5.5L19 10l-5.5-1.5L12 3ZM19 16l-.7 2.3L16 19l2.3.7L19 22l.7-2.3L22 19l-2.3-.7L19 16Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v5c0 5.2 3.4 8.8 8 10 4.6-1.2 8-4.8 8-10V6l-8-3Z"/><path d="m8.5 12 2.3 2.3 4.7-4.7"/></symbol>
+  </svg>
+
+  <script>
+    (() => {
+      const drawer = document.getElementById('review-drawer');
+      const drawerBackdrop = document.getElementById('drawer-backdrop');
+      const modal = document.getElementById('confirm-modal');
+      const reviewItemName = document.getElementById('review-item-name');
+      const drawerTitle = document.getElementById('drawer-title');
+      const todoList = document.getElementById('todo-list');
+      const loadingState = document.getElementById('loading-state');
+      const emptyState = document.getElementById('empty-state');
+      const errorState = document.getElementById('error-state');
+      const reviewContent = document.getElementById('review-content');
+      const detailContent = document.getElementById('detail-content');
+      const reviewConfirmButton = document.getElementById('review-confirm-button');
+      let activeReview = '礼堂空调保养待审核';
+
+      function toast(title, message, type = 'success') {
+        const region = document.getElementById('toast-region');
+        const item = document.createElement('div');
+        item.className = `toast ${type === 'error' ? 'error' : ''}`;
+        item.innerHTML = `<svg class="icon"><use href="#${type === 'error' ? 'i-alert' : 'i-check'}"></use></svg><div><strong>${title}</strong><span>${message}</span></div>`;
+        region.appendChild(item);
+        window.setTimeout(() => item.remove(), 4200);
+      }
+
+      function openDrawer(item) {
+        activeReview = item;
+        reviewItemName.textContent = item;
+        drawerTitle.textContent = item;
+        drawer.querySelector('.drawer-intro').textContent = '请逐项核对资料与异常。此页面仅支持人工确认“已复核”；不会审批文书、选择供应商、创建订单或发送通知。';
+        reviewContent.style.display = '';
+        detailContent.style.display = 'none';
+        reviewConfirmButton.style.display = '';
+        drawer.classList.add('open');
+        drawerBackdrop.classList.add('open');
+        drawer.querySelector('.close-button').focus();
+      }
+
+      function openDetailDrawer(title, description, rows) {
+        drawerTitle.textContent = title;
+        drawer.querySelector('.drawer-intro').textContent = description;
+        reviewContent.style.display = 'none';
+        reviewConfirmButton.style.display = 'none';
+        detailContent.innerHTML = `<section class="review-block"><h3><svg class="icon"><use href="#i-file"></use></svg>详情</h3>${rows.map(([label, value]) => `<dl><div class="kv"><dt>${label}</dt><dd>${value}</dd></div></dl>`).join('')}</section>`;
+        detailContent.style.display = '';
+        drawer.classList.add('open');
+        drawerBackdrop.classList.add('open');
+        drawer.querySelector('.close-button').focus();
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+      }
+
+      function setListState(state) {
+        todoList.style.display = state === 'list' ? '' : 'none';
+        loadingState.classList.toggle('open', state === 'loading');
+        emptyState.classList.toggle('open', state === 'empty');
+        errorState.classList.toggle('open', state === 'error');
+        if (state === 'loading') window.setTimeout(() => { if (loadingState.classList.contains('open')) setListState('list'); }, 1500);
+      }
+
+      document.addEventListener('click', (event) => {
+        const button = event.target.closest('button');
+        if (!button) return;
+        const action = button.dataset.action;
+        const review = button.dataset.review;
+        if (review) openDrawer(review);
+        if (action === 'close-drawer') closeDrawer();
+        if (action === 'confirm-review') { modal.classList.add('open'); document.querySelector('[data-action="cancel-confirm"]').focus(); }
+        if (action === 'cancel-confirm') modal.classList.remove('open');
+        if (action === 'final-confirm') { modal.classList.remove('open'); closeDrawer(); toast('已记录人工复核', `“${activeReview}”已写入审计历史；未执行审批、选商或下单。`); }
+        if (action === 'attachment') openDetailDrawer('附件详情', '请核对附件原文和版本后再作出人工判断。', [['文件', '礼堂空调保养报价单.pdf'], ['版本', 'v2 · 2026-07-16 08:47'], ['状态', '仅供查看，不触发审批']]);
+        if (action === 'audit' || action === 'history') openDetailDrawer('审计记录', '每条记录应包含操作者、时间、动作和对象；此处只读。', [['09:14 · Steven', '导出 6 月消耗品盘点摘要'], ['16:30 · Steven', '记录美术室耗材差异备注'], ['14:08 · 系统规则', '发现采购比价缺失报价']]);
+        if (action === 'filter') openDetailDrawer('筛选待办', '筛选只影响当前列表显示，清除筛选后返回全部待办。', [['模块', '全部模块'], ['状态', '待复核、待补报价、低库存'], ['截止日期', '今天至未来 7 日']]);
+        if (action === 'import') openDetailDrawer('导入资料', '选择文件后应先进行字段校验，再由 Steven 确认写入草稿区。', [['允许类型', 'XLSX、CSV、PDF'], ['写入方式', '仅导入草稿，不更新正式数据'], ['校验', '必填字段、重复记录、附件完整性']]);
+        if (action === 'export') openDetailDrawer('导出范围', '导出前请确认范围；导出行为会写入审计记录。', [['范围', '当前 Steven 工作台的可见记录'], ['格式', 'XLSX 或 PDF'], ['确认要求', '执行导出前显示确认对话框']]);
+        if (action === 'new-tender' || action === 'new-comparison' || action === 'stocktake') toast('需要明确确认', '新建流程应先打开表单，再由 Steven 主动确认提交。');
+        if (action === 'open-module') openDetailDrawer(button.dataset.module, '模块页面在 Next.js 落地时按同一复核与权限模型实现。', [['状态', 'Steven 专属入口'], ['异常', '需先人工查看和确认'], ['自动化', '不自动审批、选商或下单']]);
+        if (action === 'notifications') toast('通知占位', '通知中心尚未连接真实数据。');
+        if (action === 'profile') toast('个人设置入口', '账户菜单仅服务 Steven 的个人设置。');
+        if (action === 'state-loading') setListState('loading');
+        if (action === 'state-empty') setListState('empty');
+        if (action === 'state-error') setListState('error');
+        if (action === 'restore-list') setListState('list');
+        if (button.dataset.nav) {
+          document.querySelectorAll('.nav-item').forEach((item) => { item.classList.remove('active'); item.removeAttribute('aria-current'); });
+          button.classList.add('active'); button.setAttribute('aria-current', 'page');
+          toast('模块导航', `已切换至“${button.dataset.nav}”入口；本原型保持在 Steven 专属工作台。`);
+        }
+      });
+      drawerBackdrop.addEventListener('click', closeDrawer);
+      modal.addEventListener('click', (event) => { if (event.target === modal) modal.classList.remove('open'); });
+      document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeDrawer(); modal.classList.remove('open'); } });
+    })();
+  </script>
+</body>
+</html>

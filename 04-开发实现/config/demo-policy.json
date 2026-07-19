@@ -1,0 +1,31 @@
+{
+  "profile": "steven_demo",
+  "version": "1.0",
+  "effective_date": "2026-07-17",
+  "required_quote_count": {
+    "value": 3,
+    "status": "demo_assumption",
+    "note": "仅用于脱敏演示，不代表香港学校法定或校方正式采购要求。"
+  },
+  "purchase_amount_thresholds": {
+    "status": "pending_client_confirmation"
+  },
+  "approval_levels": {
+    "status": "pending_client_confirmation"
+  },
+  "record_retention_period": {
+    "status": "pending_client_confirmation"
+  },
+  "cloud_ocr_data_transfer": {
+    "status": "pending_client_confirmation",
+    "enabled_by_default": false
+  },
+  "automation_boundaries": {
+    "ocr_ai_output_requires_human_review": true,
+    "automatic_supplier_recommendation": false,
+    "automatic_approval": false,
+    "automatic_ordering": false,
+    "automatic_email": false,
+    "automatic_inventory_confirmation": false
+  }
+}

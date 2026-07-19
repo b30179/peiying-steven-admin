@@ -1,0 +1,2 @@
+Command: apps/web/node_modules/.bin/eslint.cmd .
+ExitCode: 0

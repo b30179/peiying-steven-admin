@@ -1,0 +1,126 @@
+{
+  "scope": "local_loopback_redacted_demo",
+  "runtime": {
+    "state": "ready",
+    "started_at": "2026-07-17T18:11:10.4759252+08:00",
+    "listeners": [
+      {
+        "service": "nextjs",
+        "address": "127.0.0.1",
+        "port": 4300
+      },
+      {
+        "service": "fastapi",
+        "address": "127.0.0.1",
+        "port": 9000
+      },
+      {
+        "service": "caddy_https",
+        "address": "127.0.0.1",
+        "port": 15443
+      },
+      {
+        "service": "caddy_admin",
+        "address": "127.0.0.1",
+        "port": 20219
+      }
+    ],
+    "health": {
+      "auth_mode": "session",
+      "persistence_mode": "postgresql",
+      "database": "puiying_steven_demo",
+      "session_store": "postgresql",
+      "audit_store": "postgresql",
+      "quote_store": "postgresql",
+      "tender_store": "postgresql",
+      "inventory_store": "postgresql",
+      "demo_seed_enabled": false,
+      "ocr_enabled": false,
+      "ai_enabled": false
+    },
+    "https_pages": [
+      {
+        "path": "/dashboard/steven/tenders",
+        "status": 200
+      },
+      {
+        "path": "/dashboard/steven/quotes",
+        "status": 200
+      },
+      {
+        "path": "/dashboard/steven/inventory",
+        "status": 200
+      }
+    ],
+    "idempotency": {
+      "duplicate_start": "healthy_instance_reused",
+      "stop_listener_count": 0,
+      "duplicate_stop": "safe_no_state",
+      "restart_listener_count": 4,
+      "log": "Steven_全项目_启停幂等_2026-07-17.log"
+    }
+  },
+  "reset": {
+    "latest_command_mode": "explicit_dry-run",
+    "plan_hash": "f30aaa916908c1e7e89ca28328950642242528e686a5d7edef0fb3c0189d4af8",
+    "database": "puiying_steven_demo",
+    "revision": "20260717_0009",
+    "file_count": 9,
+    "file_counts_by_module": {
+      "s1": 3,
+      "s2": 3,
+      "s3": 3
+    },
+    "row_counts": {
+      "s1_jobs": 1,
+      "s1_suppliers": 3,
+      "s1_versions": 3,
+      "s2_jobs": 1,
+      "s2_items": 5,
+      "s2_suppliers": 3,
+      "s2_offers": 15,
+      "s2_versions": 3,
+      "s3_counts": 1,
+      "s3_lines": 5,
+      "s3_versions": 3
+    },
+    "preserved": [
+      "accounts_roles_permissions_sessions",
+      "alembic_schema_and_revision",
+      "platform_and_business_audit_history",
+      "non_standard_demo_and_non_demo_data",
+      "project_tls_and_runtime_configuration"
+    ],
+    "last_successful_apply_journal": "data/demo-reset-journals/db4d2b5ea4724bae8c24af6d5f439c5b.json",
+    "postgres_integration": {
+      "result": "1 passed in 7.83s",
+      "concurrency_and_failure_phase": "failed_standard_namespace_preserved"
+    }
+  },
+  "verification": {
+    "backend_pytest": "141 passed, 1 skipped, 1 warning in 12.14s",
+    "reset_unit": "28 passed in 1.35s",
+    "compileall": "passed",
+    "eslint": "passed",
+    "next_build": "passed",
+    "alembic_current": "20260717_0009 (head)",
+    "offline_sql_bytes": 48056,
+    "offline_sql_sha256": "12F01295CF98D5FE18C8C36D6BC7A366254F944421CF5C25CC705CF3E227FAA9"
+  },
+  "sensitive_scan": {
+    "delivery_documents": {
+      "private_key_marker": 0,
+      "embedded_credential_url": 0,
+      "bearer_token_literal": 0,
+      "cookie_value_literal": 0,
+      "password_assignment": 0
+    },
+    "classification": "No actual credential retained; placeholders and test fixtures are separately classified."
+  },
+  "boundary": {
+    "d2_approved": false,
+    "external_provider_called": false,
+    "production_ready": false,
+    "controlled_trial_ready": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "result": "passed",
+  "server": "Next.js production server on temporary local port 3101",
+  "expected_status": 400,
+  "expected_code": "legacy_identity_headers_forbidden",
+  "cases": [
+    {"header": "X-Role", "path": "/api/auth/login", "status": 400, "code": "legacy_identity_headers_forbidden"},
+    {"header": "X-Role", "path": "/api/steven/quotes", "status": 400, "code": "legacy_identity_headers_forbidden"},
+    {"header": "X-Actor", "path": "/api/auth/login", "status": 400, "code": "legacy_identity_headers_forbidden"},
+    {"header": "X-Actor", "path": "/api/steven/quotes", "status": 400, "code": "legacy_identity_headers_forbidden"},
+    {"header": "X-Acting-Role", "path": "/api/auth/login", "status": 400, "code": "legacy_identity_headers_forbidden"},
+    {"header": "X-Acting-Role", "path": "/api/steven/quotes", "status": 400, "code": "legacy_identity_headers_forbidden"},
+    {"header": "X-Acting-Actor", "path": "/api/auth/login", "status": 400, "code": "legacy_identity_headers_forbidden"},
+    {"header": "X-Acting-Actor", "path": "/api/steven/quotes", "status": 400, "code": "legacy_identity_headers_forbidden"}
+  ]
+}

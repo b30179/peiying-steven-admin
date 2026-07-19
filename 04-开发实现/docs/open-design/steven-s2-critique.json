@@ -1,0 +1,11 @@
+{
+  "kind": "critique-panel",
+  "score": 4,
+  "axes": {
+    "clarity": { "score": 5, "notes": "列表、詳情、預檢、異常、推薦和版本責任清楚分開。" },
+    "hierarchy": { "score": 4, "notes": "以事項列表和詳情矩陣為核心，風險資訊集中於狀態與抽屜。" },
+    "typography": { "score": 4, "notes": "採用可掃描的 12/14/16/22/30px 階層與行政工作台密度。" },
+    "motion": { "score": 4, "notes": "抽屜、對話框及 Toast 使用短暫、目的明確的過渡。" },
+    "brand": { "score": 5, "notes": "採用指定的 Phase 1 中性、危險、成功與警告基線，沒有額外品牌色或漸層。" }
+  }
+}

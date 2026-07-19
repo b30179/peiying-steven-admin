@@ -1,0 +1,12 @@
+Result: PASS (Alembic offline SQL generation, exit code 0)
+Chain:
+  Running upgrade -> 20260716_0001
+  Running upgrade 20260716_0001 -> 20260716_0002
+  Running upgrade 20260716_0002 -> 20260716_0003
+  Running upgrade 20260716_0003 -> 20260716_0004
+Verified markers:
+  uq_auth_sessions_token_hash
+  auth_security_events
+  ck_auth_security_events_outcome
+  ix_auth_security_events_type_time
+  ix_auth_security_events_subject_time

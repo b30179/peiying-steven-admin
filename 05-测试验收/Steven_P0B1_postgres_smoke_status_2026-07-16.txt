@@ -1,0 +1,6 @@
+Status: NOT EXECUTED
+Reason: No approved disposable PostgreSQL instance, maintenance database connection, or dedicated smoke credentials were provided.
+Controlled check: verify_p0b_postgres.py exited with code 2 after reporting missing configuration and before any database connection.
+Prohibited actions respected: no PostgreSQL/Redis/NAS/MinIO connection, no image pull, no dependency installation, no deployment, and no host service change.
+Required future environment: approved dedicated PostgreSQL empty database, psycopg-enabled project environment, isolated file root, bootstrap credentials from managed secret storage, RATE_LIMIT_MODE=gateway, and approved TRUSTED_PROXY_CIDRS.
+Current classification: development implementation, offline migration, and automated regression passed; PostgreSQL concurrency, restart persistence, and trial-readiness remain unverified.

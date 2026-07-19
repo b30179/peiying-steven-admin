@@ -1,0 +1,19 @@
+{
+  "name": "steven.s2.quotation",
+  "version": "1.0",
+  "instruction": "Extract every sanitized supplier quotation visible in the document into the exact JSON object described below. A horizontal comparison matrix with multiple supplier columns must produce one quotes[] entry per supplier column; preserve every supplier and map each row price to the correct supplier without mixing columns. Never recommend, rank, approve, order, select a supplier, or calculate/return totals. Never invent dates, suppliers, prices, freight, or tax. Unknown quote_date or valid_until values must be null so a human reviewer can fill them.",
+  "schema": {
+    "quotes": [{
+      "supplier_code": "string, required; short normalized code unique within quotes[], use deterministic SUP-A/SUP-B/SUP-C style review codes when the document has names but no codes",
+      "supplier_name": "string, required",
+      "quote_date": "YYYY-MM-DD string or null",
+      "currency": "3-letter uppercase code, required",
+      "valid_until": "YYYY-MM-DD string or null; never use REVIEW-PLACEHOLDER",
+      "freight": "non-negative number, required; use 0 only when the document explicitly shows no freight or zero",
+      "tax": "non-negative number, required; use 0 only when the document explicitly shows no tax or zero",
+      "items": [{"item_code": "string, required", "item": "string, required", "specification": "string", "qty": "positive number", "unit": "string, required", "unit_price": "non-negative number mapped from this supplier's own column"}]
+    }]
+  },
+  "forbidden_fields": ["recommend", "rank", "approve", "order", "total", "select_supplier"],
+  "output": "Return JSON only. Do not wrap it in Markdown."
+}

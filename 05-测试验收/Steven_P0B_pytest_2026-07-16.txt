@@ -1,0 +1,10 @@
+Command:
+.venv\Scripts\python.exe -m pytest apps/api/tests -q
+
+Exit code: 0
+Result:
+.............................................                            [100%]
+45 passed, 1 warning in 24.77s
+
+Warning: Existing Starlette TestClient/httpx deprecation warning. No dependency was installed or upgraded in this phase.
+Baseline: the previous 35 Phase 1 / S2 / P0-A / P0-A.1 tests remain passing; 10 P0-B persistence/concurrency tests were added.

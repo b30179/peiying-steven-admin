@@ -1,0 +1,56 @@
+{
+  "health": {
+    "status": 200,
+    "data": {
+      "status": "ok",
+      "service": "steven-api",
+      "app_env": "development",
+      "auth_mode": "mock",
+      "demo_seed_enabled": true,
+      "ai_provider": "deepseek",
+      "ai_enabled": false
+    }
+  },
+  "dashboard_mock": {
+    "status": 200,
+    "actor": "mock-steven",
+    "metrics_count": 4
+  },
+  "forged_api_header": {
+    "status": 400,
+    "error": {
+      "code": "legacy_identity_headers_forbidden",
+      "message": "身份由服务端会话决定，不接受客户端身份或角色请求头。",
+      "details": {},
+      "request_id": "c6e75187-2aed-4773-8018-101805573b13"
+    }
+  },
+  "admin_forbidden": {
+    "status": 403,
+    "error": {
+      "code": "forbidden",
+      "message": "当前账户无权执行此操作。",
+      "details": {
+        "missing_permissions": [
+          "accounts:manage"
+        ]
+      },
+      "request_id": "396bbe1a-f614-4bcf-9646-4da56c71a896"
+    }
+  },
+  "login_page": {
+    "status": 200,
+    "contains_login_form": false
+  },
+  "dashboard_page": {
+    "status": 200,
+    "contains_quotes_route": true
+  },
+  "forged_proxy_header": {
+    "status": 400,
+    "error": {
+      "code": "identity_override_forbidden",
+      "message": "身份由服务端 Session 决定。"
+    }
+  }
+}

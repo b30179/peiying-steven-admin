@@ -1,0 +1,8 @@
+
+> puiying-steven-phase1@ lint:web D:\ZM\AI工坊\培英\04-开发实现
+> pnpm --filter @puiying/web lint
+
+
+> @puiying/web@0.1.0 lint D:\ZM\AI工坊\培英\04-开发实现\apps\web
+> eslint .
+

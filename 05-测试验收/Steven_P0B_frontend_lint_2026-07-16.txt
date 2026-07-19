@@ -1,0 +1,9 @@
+Command:
+pnpm --filter @puiying/web lint
+
+Exit code: 0
+Result:
+> @puiying/web@0.1.0 lint
+> eslint .
+
+ESLint passed with no reported errors.

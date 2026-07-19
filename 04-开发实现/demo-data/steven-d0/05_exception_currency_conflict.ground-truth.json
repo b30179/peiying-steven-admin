@@ -1,0 +1,59 @@
+{
+  "classification": "fully_sanitized_demo_data",
+  "schema_name": "steven.s2.quotation",
+  "schema_version": "1.0",
+  "expected_result": "blocked_on_confirm",
+  "warnings": [
+    "candidate_currency_mismatch"
+  ],
+  "candidate": {
+    "supplier_code": "SUP-C",
+    "supplier_name": "文具供应商丙（脱敏）",
+    "currency": "USD",
+    "valid_until": "2026-08-10",
+    "freight": "90",
+    "tax": "100",
+    "items": [
+      {
+        "item_code": "ITEM-001",
+        "item": "A4 影印纸",
+        "specification": "80gsm, 500 sheets/pack",
+        "qty": "20",
+        "unit": "包",
+        "unit_price": "43"
+      },
+      {
+        "item_code": "ITEM-002",
+        "item": "蓝色原子笔",
+        "specification": "0.7mm",
+        "qty": "100",
+        "unit": "支",
+        "unit_price": "4"
+      },
+      {
+        "item_code": "ITEM-003",
+        "item": "订书钉",
+        "specification": "24/6, 1000/box",
+        "qty": "50",
+        "unit": "盒",
+        "unit_price": "8.2"
+      },
+      {
+        "item_code": "ITEM-004",
+        "item": "A4 文件夹",
+        "specification": "transparent, 40 pages",
+        "qty": "60",
+        "unit": "个",
+        "unit_price": "5.8"
+      },
+      {
+        "item_code": "ITEM-005",
+        "item": "白板笔",
+        "specification": "black, erasable",
+        "qty": "30",
+        "unit": "支",
+        "unit_price": "12.5"
+      }
+    ]
+  }
+}

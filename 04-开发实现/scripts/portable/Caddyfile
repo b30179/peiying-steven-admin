@@ -1,0 +1,14 @@
+{
+    admin off
+    auto_https disable_redirects
+    skip_install_trust
+    persist_config off
+    storage file_system {
+        root {$CADDY_STORAGE}
+    }
+}
+https://localhost:{$CADDY_HTTPS_PORT} {
+    bind 127.0.0.1
+    tls internal
+    reverse_proxy 127.0.0.1:{$STEVEN_WEB_PORT}
+}

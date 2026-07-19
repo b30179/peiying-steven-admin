@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+**/.pytest_cache/
+**.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Node.js
+node_modules/
+.next/
+out/
+
+# Runtime data (generated at runtime)
+04-开发实现/data/runtime/
+04-开发实现/data/package-build/
+
+# OCR models (installed via pip)
+**/models/ocr/
+
+# Delivery package (published via GitHub Releases)
+交付包/
+*.zip
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Sensitive
+.env
+.env.local
+.env.production
+*.env.local
+credentials.json
+secrets.json
+
+# Caddy
+**/tools/caddy/*.zip
+**/tools/caddy/*checksums.txt
+**/tools/caddy/caddy.exe
+
+# Docker volumes
+pgdata/

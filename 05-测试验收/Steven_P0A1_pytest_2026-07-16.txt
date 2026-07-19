@@ -1,0 +1,5 @@
+Command: .venv Python -m pytest -q
+Result: PASS
+Output: 35 passed, 1 warning in 15.30s
+Warning: StarletteDeprecationWarning from the existing third-party TestClient compatibility package.
+Coverage note: includes the previous 25 P0-A / Phase 1 / S2 tests plus P0-A.1 bootstrap, CSRF, Origin, legacy-header, lockout, rate-limit and security-event cases.

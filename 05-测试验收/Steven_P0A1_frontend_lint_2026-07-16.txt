@@ -1,0 +1,3 @@
+Command: existing Node runtime + existing apps/web/node_modules/eslint/bin/eslint.js .
+Result: PASS (exit code 0, no lint findings)
+Note: no dependency installation or package-manager mutation was performed.

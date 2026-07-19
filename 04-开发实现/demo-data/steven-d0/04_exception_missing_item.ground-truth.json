@@ -1,0 +1,51 @@
+{
+  "classification": "fully_sanitized_demo_data",
+  "schema_name": "steven.s2.quotation",
+  "schema_version": "1.0",
+  "expected_result": "blocked_on_confirm",
+  "warnings": [
+    "candidate_item_set_mismatch"
+  ],
+  "candidate": {
+    "supplier_code": "SUP-B",
+    "supplier_name": "文具供应商乙（脱敏）",
+    "currency": "HKD",
+    "valid_until": "2026-08-20",
+    "freight": "180",
+    "tax": "75",
+    "items": [
+      {
+        "item_code": "ITEM-001",
+        "item": "A4 影印纸",
+        "specification": "80gsm, 500 sheets/pack",
+        "qty": "20",
+        "unit": "包",
+        "unit_price": "40"
+      },
+      {
+        "item_code": "ITEM-002",
+        "item": "蓝色原子笔",
+        "specification": "0.7mm",
+        "qty": "100",
+        "unit": "支",
+        "unit_price": "4.5"
+      },
+      {
+        "item_code": "ITEM-003",
+        "item": "订书钉",
+        "specification": "24/6, 1000/box",
+        "qty": "50",
+        "unit": "盒",
+        "unit_price": "8"
+      },
+      {
+        "item_code": "ITEM-004",
+        "item": "A4 文件夹",
+        "specification": "transparent, 40 pages",
+        "qty": "60",
+        "unit": "个",
+        "unit_price": "6.2"
+      }
+    ]
+  }
+}

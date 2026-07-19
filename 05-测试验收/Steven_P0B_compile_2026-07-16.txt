@@ -1,0 +1,5 @@
+Command:
+.venv\Scripts\python.exe -m compileall -q apps/api/app apps/api/alembic/versions/20260716_0005_s2_persistence_concurrency.py scripts/verify_p0b_postgres.py scripts/reconcile_s2_exports.py
+
+Exit code: 0
+Result: Python application, migration and P0-B verification/reconciliation scripts compiled successfully.

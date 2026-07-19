@@ -1,0 +1,7 @@
+Command: docker image inspect postgres:16-alpine
+Result: NOT AVAILABLE
+Raw error:
+Error response from daemon: No such image: postgres:16-alpine
+
+No image was pulled. PostgreSQL was not installed or connected. Empty-database migration/bootstrap/login/CSRF/RBAC smoke remains pending an approved environment.
+The existing .venv also lacks the PostgreSQL driver declared in requirements.txt; no dependency was installed. The verification script checks it lazily and reports a controlled error in an approved execution environment.

@@ -1,0 +1,17 @@
+{
+  "production_mock": {
+    "blocked": true,
+    "error_type": "RuntimeError",
+    "error": "AUTH_MODE=mock is forbidden outside development/test"
+  },
+  "staging_mock": {
+    "blocked": true,
+    "error_type": "RuntimeError",
+    "error": "AUTH_MODE=mock is forbidden outside development/test"
+  },
+  "production_demo_seed": {
+    "blocked": true,
+    "error_type": "RuntimeError",
+    "error": "DEMO_SEED_ENABLED=true is forbidden in production"
+  }
+}

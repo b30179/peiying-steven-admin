@@ -1,0 +1,121 @@
+Error [ChunkLoadError]: Failed to load chunk server/chunks/ssr/apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js from module 16671
+    at Context.loadChunkAsync [as l] (D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js:766:27) {
+  [cause]: Error: Cannot find module 'D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js'
+  Require stack:
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\app\_global-error\page.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\require.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\lib\start-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\cli\next-start.js
+      at ignore-listed frames {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\chunks\\ssr\\[turbopack]_runtime.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\app\\_global-error\\page.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\require.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\cli\\next-start.js'
+    ]
+  }
+}
+⨯ unhandledRejection:  Error [ChunkLoadError]: Failed to load chunk server/chunks/ssr/apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js from module 16671
+    at Context.loadChunkAsync [as l] (D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js:766:27) {
+  [cause]: Error: Cannot find module 'D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js'
+  Require stack:
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\app\_global-error\page.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\require.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\lib\start-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\cli\next-start.js
+      at ignore-listed frames {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\chunks\\ssr\\[turbopack]_runtime.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\app\\_global-error\\page.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\require.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\cli\\next-start.js'
+    ]
+  }
+}
+Error [ChunkLoadError]: Failed to load chunk server/chunks/ssr/apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js from module 16671
+    at Context.loadChunkAsync [as l] (D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js:766:27) {
+  [cause]: Error: Cannot find module 'D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js'
+  Require stack:
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\app\_global-error\page.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\require.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\lib\start-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\cli\next-start.js
+      at ignore-listed frames {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\chunks\\ssr\\[turbopack]_runtime.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\app\\_global-error\\page.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\require.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\cli\\next-start.js'
+    ]
+  }
+}
+⨯ unhandledRejection:  Error [ChunkLoadError]: Failed to load chunk server/chunks/ssr/apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js from module 16671
+    at Context.loadChunkAsync [as l] (D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js:766:27) {
+  [cause]: Error: Cannot find module 'D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js'
+  Require stack:
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\app\_global-error\page.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\require.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\lib\start-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\cli\next-start.js
+      at ignore-listed frames {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\chunks\\ssr\\[turbopack]_runtime.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\app\\_global-error\\page.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\require.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\cli\\next-start.js'
+    ]
+  }
+}
+⨯ Error [ChunkLoadError]: Failed to load chunk server/chunks/ssr/apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js from module 16671
+    at Context.loadChunkAsync [as l] (D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js:766:27) {
+  digest: '1603366062',
+  [cause]: Error: Cannot find module 'D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\apps_web_components_steven_steven-quotes-list_tsx_100w91u._.js'
+  Require stack:
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\chunks\ssr\[turbopack]_runtime.js
+  - D:\ZM\AI工坊\培英\04-开发实现\apps\web\.next\server\app\_global-error\page.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\require.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\next.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\server\lib\start-server.js
+  - D:\ZM\AI工坊\培英\04-开发实现\node_modules\.pnpm\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\node_modules\next\dist\cli\next-start.js
+      at ignore-listed frames {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\chunks\\ssr\\[turbopack]_runtime.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\apps\\web\\.next\\server\\app\\_global-error\\page.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\require.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\next.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+      'D:\\ZM\\AI工坊\\培英\\04-开发实现\\node_modules\\.pnpm\\next@16.2.10_@babel+core@7._5c607d5a842f8065d15620f625dc6761\\node_modules\\next\\dist\\cli\\next-start.js'
+    ]
+  }
+}

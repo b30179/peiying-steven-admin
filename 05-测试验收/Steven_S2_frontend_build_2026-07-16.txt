@@ -1,0 +1,34 @@
+
+> puiying-steven-phase1@ build:web D:\ZM\AI工坊\培英\04-开发实现
+> pnpm --filter @puiying/web build
+
+
+> @puiying/web@0.1.0 build D:\ZM\AI工坊\培英\04-开发实现\apps\web
+> next build
+
+▲ Next.js 16.2.10 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.6s
+  Running TypeScript ...
+  Finished TypeScript in 6.2s ...
+  Collecting page data using 8 workers ...
+  Generating static pages using 8 workers (0/4) ...
+  Generating static pages using 8 workers (1/4) 
+  Generating static pages using 8 workers (2/4) 
+  Generating static pages using 8 workers (3/4) 
+✓ Generating static pages using 8 workers (4/4) in 1529ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/steven/[...path]
+├ ƒ /dashboard/steven
+├ ƒ /dashboard/steven/quotes
+└ ƒ /dashboard/steven/quotes/[quoteId]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

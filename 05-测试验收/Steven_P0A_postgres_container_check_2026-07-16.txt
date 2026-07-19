@@ -1,0 +1,10 @@
+command: docker image inspect postgres:16-alpine
+exit_code: 1
+stdout:
+[]
+
+stderr:
+Error response from daemon: No such image: postgres:16-alpine
+
+
+结论：本机未缓存该镜像；遵守限制，未联网拉取、未启动容器、未连接 PostgreSQL。

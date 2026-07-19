@@ -1,0 +1,9 @@
+Command:
+pnpm --filter @puiying/web build
+
+Exit code: 0
+Result:
+- Next.js 16.2.10 production build compiled successfully.
+- TypeScript completed successfully.
+- Static page generation completed (5/5).
+- Existing routes remain present: /login, /dashboard/steven, /dashboard/steven/quotes, /dashboard/steven/quotes/[quoteId], /api/auth/[...path], /api/steven/[...path].
