@@ -1,109 +1,79 @@
-# 培英中學行政 AI 助手 (Steven Demo)
+# 🏫 培英中學 Steven 行政 AI 助手
 
-香港培英中學行政老師 AI 輔助系統 — 演示版。基於 Next.js + FastAPI + PostgreSQL 構建，支援文檔 OCR、AI 自動校對、合約管理、庫存盤點等行政辦公場景。
+> 為香港培英中學行政老師打造的 AI 輔助辦公系統 —— 文檔智能 OCR、標書校對、採購比價、庫存盤點，一站式搞定。
 
-## 🏗️ 技術架構
+## ✨ 能做什么
+
+- 📄 **文檔 OCR** — 掃描件/PDF 自動提取文字，支援繁體中文
+- 🤖 **AI 標書校對** — DeepSeek 輔助校對招標文書，結果人工審核後才入庫
+- 📊 **採購比價** — 多供應商比價、Excel 導出、AI 分析輔助推薦
+- 📦 **庫存盤點** — Excel 批量導入、智能列映射、低庫存預警、自然語言錄入
+- 🔐 **安全底座** — RBAC 權限、CSRF 防護、審計日誌、脫敏 Demo 數據
+
+## 🚀 快速開始
+
+```bash
+# 1. 啟動數據庫
+docker compose -f 04-開發實現/infra/docker-compose.postgres.yml up -d
+
+# 2. 安裝依賴
+cd 04-開發實現/apps/api && pip install -r requirements.txt
+cd 04-開發實現/apps/web && npm install
+
+# 3. 初始化 & 啟動
+cp .env.example .env          # 編輯環境變量
+python -m alembic upgrade head  # 數據庫遷移
+python scripts/reset_steven_demo_data.py  # 載入 Demo 數據
+python -m uvicorn app.main:app --reload &  # 後端 :8000
+cd apps/web && npm run dev                  # 前端 :3000
+```
+
+> 📦 **不想自己裝？** 直接下載 [便攜 Demo 包](https://github.com/b30179/peiying-steven-admin/releases/latest)，解壓即用。
+
+## 🧱 技術棧
 
 | 層 | 技術 |
 |---|---|
-| 前端 | Next.js 16 + React + Tailwind CSS |
-| 後端 | FastAPI (Python 3.11) / PostgreSQL 18 / Alembic |
-| AI | Azure Document Intelligence (OCR) / AI 輔助寫作 |
-| 部署 | Docker Compose / Caddy |
+| 前端 | Next.js 16 · React · Tailwind CSS · TypeScript |
+| 後端 | FastAPI · Python 3.11 · Alembic |
+| 數據 | PostgreSQL 18 |
+| OCR | PaddleOCR (離線) |
+| AI | DeepSeek (僅校對/結構化，不自動決策) |
+| 安全 | RBAC · CSRF · Argon2 · 審計日誌 |
 
-## 📁 項目結構
+## 📁 目錄
 
 ```
-培英/
-├── 00-項目規範/        設計規範與邊界
-├── 01-當前方案/        最新方案文檔 (v4.6)
-├── 02-實施任務/        分階段實施計劃與演示腳本
-│   ├── 01-總規劃/
-│   ├── 02-S1演示/      S1: 文檔 OCR 演示
-│   ├── 03-S2持久化與OCR/ S2: 在線 OCR + 持久化
-│   ├── 04-S3演示/      S3: 庫存盤點演示
-│   ├── 05-安全收口/
-│   ├── 06-演示與交付/
-│   └── 07-架構/
-├── 03-參考資料/        原始需求參考
-├── 04-開發實現/        核心代碼
-│   ├── apps/           API + Web 應用
-│   ├── data/           種子數據與遷移
-│   ├── scripts/        Demo 腳本與驗證
-│   ├── infra/          Docker 配置
-│   └── tools/          Caddy 反向代理
-├── 05-測試驗收/        驗收證據
-├── 90-審計記錄/        實施審計
-└── 99-歷史歸檔/        歷史版本
+├── README.md                 ← 你在這裡
+├── 00-項目規範/              設計邊界與約定
+├── 01-當前方案/              最新方案文檔
+├── 02-實施任務/              分階段計劃與演示腳本
+│   ├── 01-總規劃/            總體規劃與交付清單
+│   ├── 02-S1演示/            S1 文檔 OCR 演示
+│   ├── 03-S2持久化與OCR/     S2 在線 OCR + 持久化
+│   ├── 04-S3演示/            S3 庫存盤點演示
+│   ├── 05-安全收口/          安全加固實施
+│   ├── 06-演示與交付/        演示腳本與用戶手冊
+│   └── 07-架構/              全業務復用架構
+├── 04-開發實現/              ⭐ 源碼入口
+│   ├── apps/api/             FastAPI 後端
+│   ├── apps/web/             Next.js 前端
+│   ├── scripts/              Demo 腳本
+│   └── infra/                Docker 配置
+├── 05-測試驗收/              驗收證據
+└── 99-歷史歸檔/              歷史版本
 ```
 
-## 🚀 快速啟動
+## 📖 深入閱讀
 
-### 前置要求
+- **[技術詳情](04-開發實現/README.md)** — 模塊狀態、驗收記錄、API 說明、遷移鏈
+- **[用戶操作手冊](02-實施任務/06-演示與交付/Steven_用戶操作手冊_v1_2026-07-17.md)**
+- **[交付清單](02-實施任務/01-總規劃/Steven_交付清單_v1_2026-07-17.md)**
 
-- Docker Desktop
-- Python 3.11+
-- Node.js 20+
-- PostgreSQL 18
+## ⚠️ 重要說明
 
-### 安裝
-
-```bash
-# 1. 克隆倉庫
-git clone <repo-url>
-cd 培英
-
-# 2. 配置環境變量
-cp .env.example .env
-# 編輯 .env 填入實際值
-
-# 3. 啟動數據庫
-cd 04-開發實現
-docker compose -f infra/docker-compose.postgres.yml up -d
-
-# 4. 安裝依賴
-python -m venv .venv
-.venv\Scripts\activate  # Windows
-pip install -r apps/api/requirements.txt
-
-cd apps/web
-npm install
-
-# 5. 運行遷移
-cd ../..
-python -m alembic upgrade head
-
-# 6. 載入 Demo 數據
-python scripts/reset_steven_demo_data.py
-
-# 7. 啟動服務
-python -m uvicorn app.main:app --reload  # 後端 :8000
-cd apps/web && npm run dev                # 前端 :3000
-```
-
-## 📦 交付包
-
-便攜演示包請從 [GitHub Releases](../../releases) 下載 `Steven_Portable_Demo.zip`，解壓即用。
-
-## 🔒 安全說明
-
-- 所有密碼通過環境變量 `.env` 管理，**不要提交 `.env` 到版本控制**
-- Demo 密碼僅為開發測試用途，生產環境請更換
-- API Key 請通過環境變量 `AI_SERVICE_API_KEY` 設置
+本項目為 **脫敏 Demo 版本**，AI 輸出均進入人工審核層，不自動決定供應商、預算、審批或下單。非生產環境，不含真實業務數據。
 
 ---
 
-## 📖 更多文檔
-
-本項目含多個 README，各有分工：
-
-| 文件 | 說明 |
-|---|---|
-| `README.md`（本文件） | 項目大門 — 概覽、架構、快速啟動 |
-| [`04-開發實現/README.md`](04-開發實現/README.md) | **技術細節** — 模塊狀態、驗收記錄、API 說明 |
-| `04-開發實現/tools/caddy/README.md` | Caddy 反向代理配置 |
-| `05-測試驗收/README.md` | 測試驗收說明 |
-
-## 📄 許可
-
-本項目為香港培英中學行政 AI 助手演示版，僅供參考與學習用途。
+*香港培英中學 Steven 崗位行政 AI 助手 · Demo v1.0 · 僅供參考與學習用途*
