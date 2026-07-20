@@ -1,5 +1,12 @@
 # 🏫 培英中學 Steven 行政 AI 助手
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)](https://www.python.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-336791?logo=postgresql)](https://www.postgresql.org/)
+[![AI Powered](https://img.shields.io/badge/AI-DeepSeek-8A2BE2)](https://deepseek.com)
+
 > 為香港培英中學行政老師打造的 AI 輔助辦公系統 —— 文檔智能 OCR、標書校對、採購比價、庫存盤點，一站式搞定。
 
 ## ✨ 能做什么
