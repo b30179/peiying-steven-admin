@@ -1,4 +1,4 @@
-# 🏫 培英中學 Steven 行政 AI 助手
+# 🏫 某中學 Steven 行政 AI 助手
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)](https://www.python.org/)
@@ -7,7 +7,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-336791?logo=postgresql)](https://www.postgresql.org/)
 [![AI Powered](https://img.shields.io/badge/AI-DeepSeek-8A2BE2)](https://deepseek.com)
 
-> 為香港培英中學行政老師打造的 AI 輔助辦公系統 —— 文檔智能 OCR、標書校對、採購比價、庫存盤點，一站式搞定。
+> 為香港某中學行政老師打造的 AI 輔助辦公系統 —— 文檔智能 OCR、標書校對、採購比價、庫存盤點，一站式搞定。
 
 ## ✨ 能做什么
 
@@ -35,7 +35,7 @@ python -m uvicorn app.main:app --reload &  # 後端 :8000
 cd apps/web && npm run dev                  # 前端 :3000
 ```
 
-> 📦 **不想自己裝？** 直接下載 [便攜 Demo 包](https://github.com/b30179/peiying-steven-admin/releases/latest)，解壓即用。
+> 📦 **不想自己裝？** 直接下載 [便攜 Demo 包](https://github.com/b30179/mzx-steven-admin/releases/latest)，解壓即用。
 
 ## 🧱 技術棧
 
@@ -83,4 +83,4 @@ cd apps/web && npm run dev                  # 前端 :3000
 
 ---
 
-*香港培英中學 Steven 崗位行政 AI 助手 · Demo v1.0 · 僅供參考與學習用途*
+*香港某中學 Steven 崗位行政 AI 助手 · Demo v1.0 · 僅供參考與學習用途*

@@ -65,14 +65,14 @@ Browser HTTPS
 执行：
 
 ```powershell
-cd D:\ZM\AI工坊\培英\04-开发实现
+cd D:\ZM\AI工坊\某中学\04-开发实现
 .\scripts\stop_steven_demo.ps1
 ```
 
 或双击：
 
 ```text
-D:\ZM\AI工坊\培英\04-开发实现\停止Steven本地Demo.cmd
+D:\ZM\AI工坊\某中学\04-开发实现\停止Steven本地Demo.cmd
 ```
 
 预期结果：

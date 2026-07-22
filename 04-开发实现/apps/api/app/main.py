@@ -331,7 +331,7 @@ def create_app(
             transport=httpx_json_transport,
         )
 
-    application = FastAPI(title="培英 Steven AI 行政助手 API", version="0.3.0")
+    application = FastAPI(title="某中学 Steven AI 行政助手 API", version="0.3.0")
     application.state.settings = resolved_settings
     application.state.postgres_engine = postgres_engine
     application.state.auth_repository = auth_repository

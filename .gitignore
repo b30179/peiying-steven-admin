@@ -22,12 +22,21 @@ out/
 04-开发实现/data/runtime/
 04-开发实现/data/package-build/
 
+# Test verification logs (runtime artifacts, regenerated each run)
+05-测试验收/*.log
+05-测试验收/*.err.log
+05-测试验收/*.stdout.log
+05-测试验收/*.stderr.log
+05-测试验收/*.jsonl
+04-开发实现/data/runtime/**/*
+
 # OCR models (installed via pip)
 **/models/ocr/
 
 # Delivery package (published via GitHub Releases)
 交付包/
 *.zip
+social-preview.png.bak-*
 
 # IDE
 .vscode/
@@ -47,6 +56,7 @@ Thumbs.db
 *.env.local
 credentials.json
 secrets.json
+04-开发实现/data/secrets/
 
 # Caddy
 **/tools/caddy/*.zip

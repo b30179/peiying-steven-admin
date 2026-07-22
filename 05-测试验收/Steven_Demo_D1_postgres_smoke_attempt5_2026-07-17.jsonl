@@ -1,8 +1,0 @@
-C:\Users\MrMW\AppData\Roaming\Python\Python311\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
-  from starlette.testclient import TestClient as TestClient  # noqa
-{"step": "file_root", "status": "passed", "path": "D:\\ZM\\AI工坊\\培英\\04-开发实现\\data\\steven-demo-d1", "preserved_existing_entries": 9, "deleted_entries": 0}
-{"step": "isolated_database", "status": "passed", "database": "puiying_steven_demo", "role": "puiying_steven_demo_app", "created_or_reused": true}
-{"step": "least_privilege", "status": "passed", "role": "puiying_steven_demo_app", "target_database": "puiying_steven_demo", "superuser": false, "create_database": false, "create_role": false, "replication": false, "bypass_rls": false, "note": "No non-Demo database was enumerated or modified"}
-{"step": "migration_schema", "status": "passed", "revision": "20260717_0007", "table_count": 21, "upgrade_output": ""}
-{"step": "bootstrap_admin", "status": "passed", "duplicate_rejected": true, "password_echoed": false, "controlled_resume": true}
-{"step": "verification", "status": "failed", "error": "ApiError", "message": "(409, 'quote_locked', '采购比价已提交审批或导出，当前不可修改。', {'status': 'exported'})"}

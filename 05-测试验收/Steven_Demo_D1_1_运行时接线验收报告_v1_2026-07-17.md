@@ -1,7 +1,7 @@
 # Steven Demo D1.1 运行时接线验收报告 v1
 
 - 日期：2026-07-17
-- 项目根目录：`D:\ZM\AI工坊\培英\04-开发实现`
+- 项目根目录：`D:\ZM\AI工坊\某中学\04-开发实现`
 - 结论：**D1.1 通过。**
 - 结论边界：仅证明正式项目 Python 环境、既有独立 Demo PostgreSQL、FastAPI 与 Next.js 可形成真实本地运行时闭环；**不表示生产可用、可受控试运行或已进入 D2。**
 
@@ -30,14 +30,14 @@
 启动方式：
 
 ```powershell
-cd D:\ZM\AI工坊\培英\04-开发实现
+cd D:\ZM\AI工坊\某中学\04-开发实现
 .\scripts\start_steven_demo.ps1
 ```
 
 也可双击：
 
 ```text
-D:\ZM\AI工坊\培英\04-开发实现\启动Steven本地Demo.cmd
+D:\ZM\AI工坊\某中学\04-开发实现\启动Steven本地Demo.cmd
 ```
 
 访问地址：
@@ -57,7 +57,7 @@ D:\ZM\AI工坊\培英\04-开发实现\启动Steven本地Demo.cmd
 
 ### 3.1 正式 Python 环境与连接
 
-- Python：`D:\ZM\AI工坊\培英\04-开发实现\.venv\Scripts\python.exe`
+- Python：`D:\ZM\AI工坊\某中学\04-开发实现\.venv\Scripts\python.exe`
 - Driver：`psycopg 3.3.4`、`psycopg-binary 3.3.4`
 - 实际数据库：`puiying_steven_demo`
 - 实际角色：`puiying_steven_demo_app`
@@ -106,8 +106,8 @@ ready 文件 = 18
 
 证据：
 
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_真实运行时证据_2026-07-17.jsonl`
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_重启恢复证据_2026-07-17.jsonl`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_真实运行时证据_2026-07-17.jsonl`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_重启恢复证据_2026-07-17.jsonl`
 
 ### 3.5 前后端启动
 
@@ -155,10 +155,10 @@ Next.js production build：passed
 
 证据：
 
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_pytest_2026-07-17.txt`
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_compileall_2026-07-17.txt`
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_eslint_2026-07-17.txt`
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_next_build_2026-07-17.txt`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_pytest_2026-07-17.txt`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_compileall_2026-07-17.txt`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_eslint_2026-07-17.txt`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_next_build_2026-07-17.txt`
 
 ## 7. 验收结论
 

@@ -18,8 +18,8 @@
 4. 文件路径：
 
 ```text
-D:\ZM\AI工坊\培英\04-开发实现\tools\caddy\caddy.exe
-D:\ZM\AI工坊\培英\04-开发实现\infra\caddy\Caddyfile
+D:\ZM\AI工坊\某中学\04-开发实现\tools\caddy\caddy.exe
+D:\ZM\AI工坊\某中学\04-开发实现\infra\caddy\Caddyfile
 ```
 
 5. 监听边界：
@@ -52,15 +52,15 @@ https://localhost:15443/login
 启动入口：
 
 ```text
-D:\ZM\AI工坊\培英\04-开发实现\启动Steven本地Demo.cmd
-D:\ZM\AI工坊\培英\04-开发实现\scripts\start_steven_demo.ps1
+D:\ZM\AI工坊\某中学\04-开发实现\启动Steven本地Demo.cmd
+D:\ZM\AI工坊\某中学\04-开发实现\scripts\start_steven_demo.ps1
 ```
 
 停止入口：
 
 ```text
-D:\ZM\AI工坊\培英\04-开发实现\停止Steven本地Demo.cmd
-D:\ZM\AI工坊\培英\04-开发实现\scripts\stop_steven_demo.ps1
+D:\ZM\AI工坊\某中学\04-开发实现\停止Steven本地Demo.cmd
+D:\ZM\AI工坊\某中学\04-开发实现\scripts\stop_steven_demo.ps1
 ```
 
 已验证：

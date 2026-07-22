@@ -32,6 +32,36 @@ $publicOrigin = "https://localhost:$HttpsPort"
 $requestedAiEnabled = [bool]($EnableMockProofreading -or $EnableDeepSeekProofreading)
 $requestedAiProvider = if ($EnableDeepSeekProofreading) { "deepseek" } else { "mock" }
 
+function Test-LoopbackPortAvailable([int]$Port) {
+    $listener = $null
+    try {
+        $listener = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, $Port)
+        $listener.Start()
+        return $true
+    } catch {
+        return $false
+    } finally {
+        if ($listener) {
+            $listener.Stop()
+        }
+    }
+}
+
+if (-not (Test-LoopbackPortAvailable $WebPort)) {
+    if ($PSBoundParameters.ContainsKey('WebPort')) {
+        throw "Requested Next.js loopback port is unavailable: $WebPort"
+    }
+
+    $preferredFallbackPorts = @(18080..18099) + @(25000..25019)
+    $fallbackWebPort = @($preferredFallbackPorts | Where-Object { Test-LoopbackPortAvailable $_ } | Select-Object -First 1)
+    if ($fallbackWebPort.Count -eq 0) {
+        throw "No approved fallback loopback port is available for Next.js."
+    }
+    $WebPort = [int]$fallbackWebPort[0]
+    $publicOrigin = "https://localhost:$HttpsPort"
+    Write-Host "Default Next.js port 4300 is unavailable; using loopback port $WebPort."
+}
+
 if (-not (Microsoft.PowerShell.Management\Test-Path -LiteralPath $python)) {
     throw "Project Python environment is missing: .venv"
 }

@@ -3,7 +3,7 @@
 ## 后端
 
 ```powershell
-cd D:\ZM\AI工坊\培英\04-开发实现\apps\api
+cd D:\ZM\AI工坊\某中学\04-开发实现\apps\api
 $env:APP_ENV="development"
 $env:AUTH_MODE="mock"
 $env:DEMO_SEED_ENABLED="true"
@@ -21,14 +21,14 @@ $env:MOCK_IDENTITY="steven"
 本地 PostgreSQL 模板（仅在本机已有镜像时使用，不会自动部署）：
 
 ```powershell
-cd D:\ZM\AI工坊\培英\04-开发实现
+cd D:\ZM\AI工坊\某中学\04-开发实现
 docker compose --env-file infra\env\development.env.example -f infra\docker-compose.postgres.yml up -d
 ```
 
 Session 模式必须配置独立 `DATABASE_URL`，再执行 migration：
 
 ```powershell
-cd D:\ZM\AI工坊\培英\04-开发实现\apps\api
+cd D:\ZM\AI工坊\某中学\04-开发实现\apps\api
 $env:APP_ENV="development"
 $env:AUTH_MODE="session"
 $env:DEMO_SEED_ENABLED="true"
@@ -44,7 +44,7 @@ $env:DATABASE_URL="postgresql+psycopg://<dev_user>:<dev_password>@127.0.0.1:5432
 开发模式：
 
 ```powershell
-cd D:\ZM\AI工坊\培英\04-开发实现
+cd D:\ZM\AI工坊\某中学\04-开发实现
 pnpm dev:web
 ```
 
@@ -67,7 +67,7 @@ pnpm --filter @puiying/web start
 ## 测试
 
 ```powershell
-cd D:\ZM\AI工坊\培英\04-开发实现
+cd D:\ZM\AI工坊\某中学\04-开发实现
 .\.venv\Scripts\python.exe -m pytest apps\api\tests -q
 pnpm lint:web
 pnpm build:web

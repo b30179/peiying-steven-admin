@@ -1,7 +1,7 @@
 # Steven Demo D1.2 HTTPS 验收报告 v1
 
 - 日期：2026-07-17
-- 项目目录：`D:\ZM\AI工坊\培英\04-开发实现`
+- 项目目录：`D:\ZM\AI工坊\某中学\04-开发实现`
 - 验收范围：本机、独立、脱敏 Demo 的 PostgreSQL + HTTPS 浏览器 Session 闭环
 - 最终结论：**D1.2 通过，但仅限上述本机 Demo 范围。**
 - 结论边界：不表示生产可用、可受控试运行、已连接线上 OCR/AI，亦不构成 D2 执行授权。
@@ -140,14 +140,14 @@ D2.0 至少需要负责人书面确认：
 
 ## 8. 证据路径
 
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_运行时接线验收报告_v1_2026-07-17.md`
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_真实运行时证据_2026-07-17.jsonl`
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_1_重启恢复证据_2026-07-17.jsonl`
-- `D:\ZM\AI工坊\培英\05-测试验收\Steven_Demo_D1_PostgreSQL验收报告_v2_2026-07-17.md`
-- `D:\ZM\AI工坊\培英\04-开发实现\data\runtime\runs\20260717-115316\logs\api.out.log`
-- `D:\ZM\AI工坊\培英\04-开发实现\data\runtime\runs\20260717-115316\logs\web.out.log`
-- `D:\ZM\AI工坊\培英\04-开发实现\data\runtime\runs\20260717-115316\logs\caddy.err.log`
-- `D:\ZM\AI工坊\培英\04-开发实现\data\runtime\steven-demo-processes.json`
-- `D:\ZM\AI工坊\培英\04-开发实现\infra\caddy\Caddyfile`
-- `D:\ZM\AI工坊\培英\04-开发实现\scripts\start_steven_demo.ps1`
-- `D:\ZM\AI工坊\培英\04-开发实现\scripts\stop_steven_demo.ps1`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_运行时接线验收报告_v1_2026-07-17.md`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_真实运行时证据_2026-07-17.jsonl`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_1_重启恢复证据_2026-07-17.jsonl`
+- `D:\ZM\AI工坊\某中学\05-测试验收\Steven_Demo_D1_PostgreSQL验收报告_v2_2026-07-17.md`
+- `D:\ZM\AI工坊\某中学\04-开发实现\data\runtime\runs\20260717-115316\logs\api.out.log`
+- `D:\ZM\AI工坊\某中学\04-开发实现\data\runtime\runs\20260717-115316\logs\web.out.log`
+- `D:\ZM\AI工坊\某中学\04-开发实现\data\runtime\runs\20260717-115316\logs\caddy.err.log`
+- `D:\ZM\AI工坊\某中学\04-开发实现\data\runtime\steven-demo-processes.json`
+- `D:\ZM\AI工坊\某中学\04-开发实现\infra\caddy\Caddyfile`
+- `D:\ZM\AI工坊\某中学\04-开发实现\scripts\start_steven_demo.ps1`
+- `D:\ZM\AI工坊\某中学\04-开发实现\scripts\stop_steven_demo.ps1`

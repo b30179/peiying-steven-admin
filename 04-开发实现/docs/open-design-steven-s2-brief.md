@@ -1,6 +1,6 @@
 # Open Design Brief：Steven S2 采购比价
 
-为香港培英中学校务处 Steven 专属行政助手设计 `/dashboard/steven/quotes` 采购比价页面。延续 Phase 1 Dashboard 的克制、可信、行政工作台视觉，不生成其他岗位入口。
+为香港某中学校务处 Steven 专属行政助手设计 `/dashboard/steven/quotes` 采购比价页面。延续 Phase 1 Dashboard 的克制、可信、行政工作台视觉，不生成其他岗位入口。
 
 页面必须覆盖采购事项列表、5 个标准品项、3 家供应商、15 条报价明细、导入预检、异常阻断、最低价排序、人工推荐、审计和 Excel 版本导出。明确区分系统价格排序与人工推荐：推荐字段默认空白，不自动选择供应商。
 
